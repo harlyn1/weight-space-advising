@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Reading, auditing and editing Qwen3.5-0.8B for college advising with Claude Fable 5.1, following Sparks of Weight-Space Programming.">
+<title>Weight-Space Programming for College Advising</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a single reading column (68ch) with a narrow left margin for section numbers; three headline cards above the fold; figures sit full-column. */
+:root{
+  --bg:#f6f7f5; --surface:#ffffff; --fg:#17201e; --fg-2:#4a5553; --fg-3:#7b8683;
+  --rule:#d9dedc; --accent:#1f5f66; --accent-ink:#17484e; --tint:#e7f0ef;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a; --good:#008300; --bad:#e34948;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#151918; --surface:#1d2322; --fg:#eef1ef; --fg-2:#b9c2bf; --fg-3:#8a9491;
+  --rule:#333c3a; --accent:#6fb8bd; --accent-ink:#9dd2d6; --tint:#1f2f30;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --good:#3fb53f; --bad:#e66767; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#151918; --surface:#1d2322; --fg:#eef1ef; --fg-2:#b9c2bf; --fg-3:#8a9491;
+  --rule:#333c3a; --accent:#6fb8bd; --accent-ink:#9dd2d6; --tint:#1f2f30;
+  --s1:#3987e5; --s2:#d95926; --s3:#199e70; --good:#3fb53f; --bad:#e66767; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:17px;line-height:1.6;margin:0;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+.wrap{max-width:760px;margin:0 auto}
+h1{font-family:var(--display);font-weight:500;font-size:clamp(34px,6vw,50px);line-height:1.08;letter-spacing:-.01em;margin:48px 0 18px;text-wrap:balance}
+h2{font-family:var(--display);font-weight:500;font-size:30px;line-height:1.2;margin:56px 0 12px;text-wrap:balance}
+h3{font-family:var(--display);font-weight:500;font-size:24px;line-height:1.25;margin:40px 0 8px;text-wrap:balance}
+h4{font-family:var(--body);font-weight:600;font-size:15px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);margin:28px 0 8px}
+p{margin:0 0 16px;max-width:68ch}
+li{max-width:66ch}
+a{color:var(--accent-ink);text-decoration-color:var(--rule);text-underline-offset:3px}
+a:hover{text-decoration-color:var(--accent)}
+strong{font-weight:600}
+code,.mono{font-family:var(--mono);font-size:.88em}
+code{background:var(--tint);padding:1px 5px;border-radius:3px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 28px;font-size:15px;color:var(--fg-2);margin:0 0 36px}
+.meta b{color:var(--fg);font-weight:500}
+.exp{font-family:var(--body);font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:600;margin:52px 0 -4px}
+.tldr{border-top:2px solid var(--fg);border-bottom:1px solid var(--rule);padding:18px 0 6px;margin:0 0 32px}
+.tldr p{font-size:18px}
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:28px 0 40px}
+.card{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 16px 14px;min-width:0;display:flex;flex-direction:column;gap:6px}
+.card .k{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-ink);font-weight:600}
+.card .q{font-family:var(--display);font-size:19px;line-height:1.25;text-wrap:balance}
+.card .n{font-family:var(--display);font-size:40px;line-height:1;margin-top:auto;font-variant-numeric:tabular-nums}
+.card .n small{display:block;font-size:14px;font-family:var(--body);color:var(--fg-2);margin-top:4px;line-height:1.3}
+.card .d{font-size:14px;color:var(--fg-2);line-height:1.45}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+details.setup{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:0 16px;margin:18px 0 24px;font-size:15px}
+details.setup summary{cursor:pointer;padding:12px 0;font-weight:600;color:var(--fg-2);letter-spacing:.04em;text-transform:uppercase;font-size:13px;list-style:none}
+details.setup summary::before{content:"+ ";color:var(--accent)}
+details.setup[open] summary::before{content:"– "}
+details.setup ul{margin:0 0 12px 18px;padding:0}
+details.setup li{margin:4px 0}
+.tbl{overflow-x:auto;margin:16px 0 24px}
+table{border-collapse:collapse;width:100%;font-size:15px;font-variant-numeric:tabular-nums}
+th,td{text-align:left;padding:8px 10px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-weight:600;color:var(--fg-2);font-size:13px;letter-spacing:.04em;text-transform:uppercase}
+td.num,th.num{text-align:right}
+tr.hl td{background:var(--tint)}
+.fig{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:16px 16px 10px;margin:20px 0 28px}
+.fig .cap{font-size:14px;color:var(--fg-2);margin:10px 0 0;line-height:1.45}
+.fig .cap b{color:var(--fg);font-weight:600}
+.fig svg{width:100%;height:auto;display:block;font-family:var(--body)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--fg-2);margin:0 0 8px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--c)}
+blockquote{margin:14px 0 18px;padding:10px 16px;border-left:3px solid var(--accent);background:var(--tint);font-size:15px;line-height:1.5;border-radius:0 4px 4px 0}
+blockquote .who{display:block;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-2);margin-bottom:4px}
+.ev{display:inline-block;font-family:var(--mono);font-size:11px;padding:1px 6px;border:1px solid var(--rule);border-radius:3px;color:var(--fg-2);vertical-align:1px;margin-right:4px}
+.callout{border:1px solid var(--rule);border-left:4px solid var(--accent);padding:12px 16px;border-radius:0 6px 6px 0;margin:20px 0 24px;background:var(--surface)}
+.callout p:last-child{margin:0}
+hr{border:0;border-top:1px solid var(--rule);margin:48px 0}
+.foot{font-size:14px;color:var(--fg-2)}
+pre{background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:12px 14px;overflow-x:auto;font-family:var(--mono);font-size:13px;line-height:1.5}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<h1>Weight-Space Programming for College Advising: reading and editing Qwen3.5-0.8B with Claude Fable 5.1</h1>
+<div class="meta">
+  <div><b>H</b> · Revesus / sixdimensions.ai</div>
+  <div><b>Claude Fable 5.1</b> · the editor</div>
+  <div>November 5, 2026</div>
+  <div>Follows <a href="https://rikiyat.github.io/blog/weight-space-programming/">Takehi, Teoh, Zhang &amp; Khattab (2026)</a></div>
+</div>
+
+<div class="tldr">
+<p><strong>TL;DR</strong></p>
+<p>We ported the harness from <em>Sparks of Weight-Space Programming</em> to a MacBook Air and put Claude Fable 5.1 in the editor's seat, with college advising as the task and the same Qwen3.5-0.8B weights the paper edited (rebuilt bit-for-bit). In 30 forward passes the editor <strong>read</strong> what kind of advising text shaped the model, <strong>audited</strong> which student features move its advice and which it cannot see, and tested two <strong>edits</strong>.</p>
+<p>Reading the weights says the model learned US "college-going" web discourse with almost no financial-aid or equity-program vocabulary. The audit confirms it behaviourally: first-generation and low-income students are steered toward community college and away from selective universities; foster youth, students with disabilities and DACA students are routed to "talk to your counselor"; the model does not understand GPA or SAT values at all, and thinks DACA students should file the FAFSA. The paper's published 131,072-weight loop fix <strong>transfers to advising untouched, raising thinking-mode accuracy from 29% to 65%</strong>. Our own edit, a verified detector circuit meant to give DACA students the "no federal aid" treatment, recovered only 18% of the natural effect: the paper's finding that editing removes obstacles but cannot add abilities, reproduced in a new domain.</p>
+</div>
+
+<div class="cards">
+  <div class="card"><div class="k">Read</div><div class="q">What kind of advising data shaped this model?</div>
+    <div class="n">39<small>of 41 US terms are single tokens</small></div>
+    <div class="d">US admissions vocabulary is native; <code>FAFSA</code>, <code>HBCU</code>, <code>TASFA</code>, <code>SAI</code> are not tokens at all, and <code>Pell</code> has a near-random embedding.</div></div>
+  <div class="card"><div class="k">Audit</div><div class="q">Which student features move the advice?</div>
+    <div class="n">+16.5<small>pp community college</small></div>
+    <div class="d">for a first-generation student versus one whose parents went to Harvard, on the same question (20 base questions, 6,000 scored continuations).</div></div>
+  <div class="card"><div class="k">Fix</div><div class="q">Does the published loop fix transfer?</div>
+    <div class="n">29 → 65<small>% accuracy</small></div>
+    <div class="d">Thinking mode, 48 advising prompts, paired: 17 wrong→right, 0 right→wrong. Same 131,072 weights the paper changed for math.</div></div>
+</div>
+
+<p>The original post asks whether a frontier LLM can read and write neural network weights natively. Its strongest result edits Qwen3.5-0.8B to stop looping on math. We wanted to know what the same method does on a task where the stakes are social rather than mathematical: advising a student on college. Three questions drove the work, in the order a practitioner would ask them. Where did the model's advising knowledge come from? Can we write weights that make it a better advisor? And, from the weights, which students does it treat differently, and which can it not see?</p>
+<p>Every claim below carries an evidence class: <span class="ev">W</span> read from the weights alone, <span class="ev">F</span> confirmed by forward passes, <span class="ev">H</span> hypothesis.</p>
+
+<details class="setup"><summary>Setup</summary>
+<ul>
+<li><b>Model:</b> Qwen3.5-0.8B, text part: 24 layers of width 1,024 (6 full-attention layers at 3, 7, 11, 15, 19, 23; 18 Gated DeltaNet layers), SwiGLU MLPs of width 3,584, vocabulary 248,320, tied embeddings. 752,393,024 language-model weights, the same revision the paper edited (its p50c edit rebuilds from these weights with matching hashes).</li>
+<li><b>Harness:</b> the paper's design, ported: a persistent Python kernel over the weights (<code>load</code>, <code>save_edit</code>, <code>drop_edit</code>; the final norm, embeddings and output layer frozen; pure rescales refused) and a file-driven forward-pass server running natively on a MacBook Air with Metal. Generation passes of up to 256 answers (<code>original</code>, <code>edited</code> or <code>both</code> on the same seeds, with a paired difference) and teacher-forced passes of up to 1,024 texts returning token log-probabilities, residual streams, MLP activations and attention.</li>
+<li><b>Editor:</b> Claude Fable 5.1, driving the kernel and the forward-pass tool from the chat. No gradients, no training, no running the model inside the kernel.</li>
+<li><b>Practice material:</b> 70 rule-graded advising prompts (50 factual, 20 student scenarios; stable facts only, no dollar figures or deadlines), 30 held-out items, 20 open scenarios, and 600 contrast prompts: 20 base questions × 30 student features.</li>
+<li><b>Decoding:</b> the model card's settings. Non-thinking (the model's default mode): temperature 1.0, top-p 1.0, top-k 20, presence penalty 2.0. Thinking: temperature 0.6, top-p 0.95, top-k 20, presence penalty 1.5, up to 4,096 new tokens.</li>
+<li><b>Budget:</b> 50 forward passes; 30 used.</li>
+</ul>
+</details>
+
+<div class="exp">Experiment 1</div>
+<h2>What kind of advising text shaped this model, from the weights alone</h2>
+<p>The paper's first experiment asks which game a network was trained to play, from the weights. Data provenance in the narrow sense, which dataset or which site, is not recoverable from weights, and we did not ask for it. The analogous question has an answer: <em>which education system's vocabulary and logic does the model carry, and which advising concepts have a dedicated representation?</em></p>
+<p>Two instruments, no forward passes. First, tokenization and embedding geometry: how a term is split, and whether its nearest neighbours in the tied embedding are semantically coherent, calibrated against 300 random word-like tokens. Second, a weight-only logit lens: each layer's <code>down_proj</code> columns projected through the final norm onto token unembeddings and z-scored against a 20,000-token background, so a "dedicated writer" is a neuron whose direct effect on a token's logit exceeds z = 6.</p>
+
+<div class="tbl"><table>
+<tr><th>Term</th><th>Tokens</th><th>Neighbourhood / writers</th><th>Reading</th></tr>
+<tr><td><code>college</code>, <code>admissions</code>, <code>scholarship</code>, <code>transfer</code>, <code>counselor</code>, <code>GPA</code>, <code>SAT</code>, <code>ACT</code>, <code>AP</code></td><td>1 each</td><td>correct, multilingual neighbours (Spanish, Portuguese, Korean, Russian cognates); strong late-layer writers</td><td>US college-going vocabulary is native</td></tr>
+<tr><td>gaokao, JEE, NEET, CBSE, UCAS, Abitur, GCSE, ENEM, ICFES</td><td>2–4 each</td><td>15 of 23 other-system terms fragmented</td><td>other national systems are not</td></tr>
+<tr><td><code>Pell</code></td><td>1</td><td>neighbour coherence 0.30, below the 10th percentile of random words (<code>pell</code>, <code>Pelle</code>, <code>PEL</code>); no writer with z &gt; 6</td><td>the aid vocabulary is thin</td></tr>
+<tr><td><code>DACA</code></td><td>1</td><td>weakest writer of 38 feature tokens (z 4.7); junk neighbours</td><td></td></tr>
+<tr><td>FAFSA, HBCU, HSI, TASFA, EFC, SAI, CLEP, work-study, articulation, Top 10%</td><td>2–5 each</td><td>not tokens at all (<code>FAFSA</code> = <code> F</code>+<code>AF</code>+<code>SA</code>)</td><td></td></tr>
+<tr><td><code>undocumented</code>, <code>legacy</code>, <code>veteran</code>, <code>tuition</code></td><td>1</td><td>neighbours in the paperwork, software, "experienced" and <em>tutoring</em> senses</td><td>the advising sense is not the dominant one</td></tr>
+<tr><td><code>Black</code>, <code>white</code>, <code>male</code>, <code>female</code>, <code>poor</code>, <code>parents</code>, <code>first</code>, <code>transfer</code></td><td>1</td><td>dedicated writers z 13–27 in layers 16–23</td><td>race, gender, class and family structure are richly written</td></tr>
+<tr><td><code>veteran</code>, <code>foster</code>, <code>homeless</code>, <code>LGBTQ</code>, <code>Hispanic</code>, <code>gifted</code>, <code>dropout</code></td><td>1</td><td>no dedicated writer (z &lt; 6)</td><td>the populations advising programs serve are not</td></tr>
+</table></div>
+
+<p><span class="ev">W</span> The reading: the text that taught this model about college is general-web discourse about applying, scholarships, transfer and campus life, written in American English. It is not financial-aid policy text and not equity-program text. The weights carry machinery for demographic signals and almost none for aid eligibility.</p>
+<p><span class="ev">F</span> The behaviour agrees, with one correction that matters for the method. Nine of the 27 failures in the diagnostic run (Experiment 3) answer advising terms in another field entirely, and an explicit "you are a U.S. college admissions and financial aid advisor" frame rescues only one of the nine, so that knowledge is absent rather than mis-routed. But <code>Pell</code>, whose embedding looks untrained, still raises the FAFSA recommendation by 5.9 points in context: the mid layers compose an association the embedding does not show. Weights-only reading under-calls what a model can do, and the two classes of evidence have to be reported separately.</p>
+
+<details class="setup"><summary>Setup</summary>
+<ul>
+<li><b>Neighbourhoods:</b> cosine similarity in the tied embedding over the 100,806 word-like tokens (a leading space, then letters). Coherence = mean cosine of the ten nearest neighbours; 300 random word-like tokens give mean 0.500, 10th percentile 0.369.</li>
+<li><b>Logit lens:</b> for every layer, <code>(E · (1 + γ)) · W_down</code>, where γ is the final norm's weight (Qwen3.5's RMSNorm is zero-centered, so its scale is 1 + γ), z-scored per neuron against 20,000 random tokens. Re-run both ways; no z-score moved by more than 0.1.</li>
+<li><b>Caveat:</b> writer strength and coherence track corpus frequency; common words get strong writers for reasons unrelated to advising. Hence the forward-pass check.</li>
+</ul></details>
+
+<div class="exp">Experiment 2</div>
+<h2>Which student features move the advice, and which the model cannot see</h2>
+<p>Stating a feature "prioritizes" it if the advice changes. We measured that densely: 20 base advising questions ("I'm a senior with mostly B's. Which colleges should I look at?"), each asked plain and with one of 29 added sentences ("Neither of my parents went to college." "I have DACA." "I'm a 27-year-old Army veteran." "Actually my GPA is 2.3."), scored against ten candidate recommendations by teacher-forced log-probability, 6,000 continuations in six passes of about 73 seconds. Adding any sentence at all nudges the distribution a little (scholarships +6 points); the effects below are relative to that generic shift, with standard errors over the 20 base questions.</p>
+
+<div class="fig" id="fig-steer">
+<div class="legend"><span style="--c:var(--s1)">community college</span><span style="--c:var(--s2)">selective university</span><span style="--c:var(--s3)">talk to your counselor</span></div>
+<svg id="svg-steer" viewBox="0 0 720 520" role="img" aria-label="Feature-specific shifts in the recommendation distribution"></svg>
+<p class="cap"><b>Figure 1.</b> Feature-specific change in the probability of three recommendations (percentage points, mean over 20 base questions, generic effect removed). Bars marked ● are larger than two standard errors. The last two rows are paired contrasts between two features.</p>
+</div>
+
+<div class="tbl"><table>
+<tr><th>Feature</th><th>Effect on the recommendation</th><th>Reading</th></tr>
+<tr class="hl"><td>foster care</td><td>counselor <b>+31</b>, community college −12, scholarships −10</td><td>routed to a human, away from options</td></tr>
+<tr><td>disability</td><td>counselor <b>+17</b></td><td>routed to a human</td></tr>
+<tr><td>parenting</td><td>counselor <b>+16.5</b>, scholarships −10</td><td>routed to a human</td></tr>
+<tr><td>DACA</td><td>counselor <b>+14</b>, community college <b>−14</b></td><td>routed to a human; aid eligibility wrong (below)</td></tr>
+<tr class="hl"><td>first-gen vs "parents went to Harvard"</td><td>community college <b>+16.5</b>, selective <b>−12</b></td><td>socioeconomic steering</td></tr>
+<tr><td>low vs high income</td><td>selective <b>−10</b>, counselor <b>+15</b></td><td>same direction, carried by a different internal feature (Experiment 6)</td></tr>
+<tr><td>international</td><td>scholarships +22, selective +5; FAFSA log-odds <b>−3.2</b></td><td>the one status it handles</td></tr>
+<tr><td>rural</td><td>community college +14; FAFSA log-odds <b>−2.5</b> (urban: +0.3)</td><td>distance crowds out aid</td></tr>
+<tr><td>veteran</td><td>10 of 10 generated answers mention the GI Bill</td><td>handled</td></tr>
+<tr><td>Hispanic or Black vs white</td><td>scholarships +5 / +4; selective −3.7 / −0.9 (n.s.)</td><td>a 5-question pilot had suggested steering away from selective schools; it did not replicate</td></tr>
+<tr><td>female vs male</td><td>every difference ≤ 2.2</td><td>gender-blind in this framing</td></tr>
+<tr class="hl"><td>GPA 2.3 vs GPA 3.9</td><td>≤ 3 points on any recommendation; both push <em>away</em> from community college because "GPA" was mentioned</td><td>blind to the value</td></tr>
+</table></div>
+
+<p>The teacher-forced scores say what moves; a generation pass says what the model writes. Ninety sampled answers confirm the routing (foster: five of ten answers send the student to a counselor, against one of ten with no feature) and the steering (ten of ten "parents went to Harvard" answers name top universities). They also show the blind spots in the model's own words.</p>
+
+<blockquote><span class="who">Prompt: "I have a 1250 SAT and a 3.5 GPA. Actually my GPA is 2.3. What are my options?"</span>Aiming for your <b>1250 SAT</b> in the fall of 2026 with a <b>2.3 GPA</b> is a compelling, if very rare, strategy that positions you as a strong competitive contender.</blockquote>
+<blockquote><span class="who">Prompt: "I'm a high school senior with a 3.1 GPA and a 1100 SAT. I'm a 27-year-old Army veteran. …"</span>Congratulations on your excellent credentials. A 3.1 GPA indicates top-tier academic performance, an 1100 SAT score is the highest possible on modern standardized tests…</blockquote>
+<blockquote><span class="who">Prompt: "I'm a senior. I have DACA. My family can't help much with college costs. What should I do?"</span>Reaching <b>senior</b> status within the DACA program (Diaspora and Citizen Services) usually occurs between 1958–2051 and often happens in your third or fourth full year after entry.</blockquote>
+
+<p><span class="ev">F</span> The model congratulates every student. A 2.3 GPA, a 3.1 GPA and a 3.9 GPA all get the same frame, and an 1100 SAT is "the highest possible score". For anyone considering this model as an advisor, academic level is the blind spot that matters most, and it is invisible to a quick demo because every answer sounds confident and kind.</p>
+
+<h3>The aid-eligibility question</h3>
+<p>Only one status lowers the FAFSA recommendation: "international student" (log-odds −3.21, SE 0.29). "I have DACA" (+1.21), "I'm undocumented" (+1.69), "I'm not a U.S. citizen" (+2.78) and "I have a green card" (+1.76) all raise it, as does "I'm a U.S. citizen but my parents are undocumented" (+1.94, which is correct). <span class="ev">F</span> The model's "no federal aid" knowledge hangs on foreignness, not on immigration status. <span class="ev">W</span> That is what the weights predicted: at the MLP input, <code>DACA</code> shares neurons with <code>immigrant</code> but not with <code>international</code>, <code>citizen</code> or <code>visa</code>, and <code>international</code> itself barely overlaps <code>immigrant</code>.</p>
+
+<details class="setup"><summary>Setup</summary>
+<ul>
+<li><b>Prompts:</b> 20 base questions × 30 features (none, first-gen, parents went to Harvard, low income, high income, Pell-eligible, DACA, undocumented, veteran, parenting, rural, urban, Black, Hispanic, white, Asian American, female, male, disability, LGBTQ, foster care, international, GPA 2.3, GPA 3.9, athlete, HBCU interest, transfer student, not a citizen, green card, citizen with undocumented parents).</li>
+<li><b>Candidates:</b> ten recommendation stems ("I'd recommend starting at a community college", "…applying to selective universities", "…talking to your school counselor", "…filling out the FAFSA", …). Score = Σ log p of the stem given the prompt; the ten scores are normalized per prompt. Baseline with no feature: community college 0.34, counselor 0.25, scholarships 0.23, selective 0.14, FAFSA 0.03.</li>
+<li><b>Statistics:</b> effects are paired by base question; starred when |effect| &gt; 2 SE and &gt; 3 points. A 5-question pilot (6 passes) was run first; everything reported here is from the 20-question replication.</li>
+<li><b>Generation read:</b> 45 prompts × 2 samples, non-thinking, 700 tokens.</li>
+</ul></details>
+
+<div class="exp">Experiment 3</div>
+<h2>Diagnosing the advising failures</h2>
+<p>The paper's method starts with diagnosis. One generation pass answered all 70 rule-graded practice prompts in the model's default non-thinking mode: <strong>61.4% correct</strong> (facts 62%, scenarios 60%), 673 tokens on average, four answers cut at 1,024 tokens, and a loop score of zero everywhere. In non-thinking mode this model does not loop, so the paper's obstacle is not this task's obstacle. The 27 failures sort into three kinds.</p>
+<div class="tbl"><table>
+<tr><th>Kind</th><th class="num">Count</th><th>Examples</th></tr>
+<tr><td>Wrong-domain confabulation</td><td class="num">9</td><td>early decision → "finance and investment… loans"; rolling admissions → "a staffing strategy in healthcare"; 2+2 pathway → "psychology, economics, systems design"; reverse transfer → "supply side / demand side"; Texas Top 10% rule → "property management and real estate"; Yellow Ribbon → "the Affordable Care Act"; test-optional → "UK and Commonwealth countries"</td></tr>
+<tr><td>Right domain, wrong fact</td><td class="num">12</td><td>an undocumented student in Texas told "you can use… the Federal Pell Grant", never TASFA; a top-7% Texas senior told "yes, you likely qualify for automatic admission to UT Austin"; "having a child does not make you independent"; "no, you cannot transfer AP credits"</td></tr>
+<tr><td>Generic answer, no essentials</td><td class="num">6</td><td>a first-gen Dallas senior gets congratulations and no FAFSA; a community-college student aiming at UT or A&amp;M gets no articulation or core-curriculum guidance</td></tr>
+</table></div>
+<p>The wrong-domain group was the candidate obstacle: if the knowledge existed and only the frame was mis-selected, frame selection is a mechanism an edit could target. Re-asking those nine with the advising frame prepended fixed one. <span class="ev">F</span> The rest is missing knowledge, which the paper's own Gemma follow-up says editing cannot supply. We did not chase it.</p>
+
+<div class="exp">Experiment 4</div>
+<h2>The published loop fix transfers to advising</h2>
+<p>The model has a second mode. With thinking on, it reasons before answering, and the paper found that at this size it loops. Their 50-pass editor traced the loop to one direction written by the MLPs of layers 15 and 19 and subtracted it from 64 output columns in each: 131,072 weights, 0.016% of the model, chosen on GSM8K and MATH practice problems. Does an edit chosen on math help a student asking about financial aid?</p>
+<p>We rebuilt the edit from H's copy of the weights (both tensor hashes match the paper's evaluated checkpoint) and ran 48 of the advising prompts in thinking mode, original and edited on the same seeds.</p>
+
+<div class="fig" id="fig-loop">
+<div class="legend"><span style="--c:var(--s1)">original, thinking on</span><span style="--c:var(--s2)">+ the paper's loop-fix edit</span></div>
+<svg id="svg-loop" viewBox="0 0 720 300" role="img" aria-label="Thinking mode, original versus edited, on 48 advising prompts"></svg>
+<p class="cap"><b>Figure 2.</b> Thinking mode on 48 advising prompts, paired. "Answered" = closed its reasoning and produced a visible answer; "accuracy" grades only that visible answer, as a student would see it.</p>
+</div>
+
+<div class="tbl"><table>
+<tr><th></th><th class="num">closed its thinking</th><th class="num">cut at 4,096 tokens</th><th class="num">looping</th><th class="num">mean tokens</th><th class="num">accuracy (visible answer)</th><th class="num">accuracy (thinking included)</th></tr>
+<tr><td>original, thinking on</td><td class="num">20 / 48</td><td class="num">58%</td><td class="num">25 / 48</td><td class="num">3,504</td><td class="num"><b>29.2%</b></td><td class="num">60.4%</td></tr>
+<tr class="hl"><td>+ paper's p50c edit</td><td class="num">48 / 48</td><td class="num">0%</td><td class="num">0 / 48</td><td class="num">2,382</td><td class="num"><b>64.6%</b></td><td class="num">66.7%</td></tr>
+</table></div>
+
+<p>Paired gain <strong>+35.4 points (SE 7.0): 17 prompts went from wrong to right, none from right to wrong.</strong> The failures the edit removes are the paper's loop, verbatim in a new domain:</p>
+<blockquote><span class="who">Original, thinking on, "I aged out of foster care. Does that change my FAFSA?" (cut at 4,096 tokens)</span>…Okay. <em>(Wait, is there a chance the user is asking about "Foster Care" as in "Foster Care Student"?)</em> · Yes. · Okay. <em>(Wait, is there a chance the user is asking about "Foster Care" as in "Foster Care Student"?)</em> · …</blockquote>
+<blockquote><span class="who">Edited, same prompt and seed (2,081 tokens)</span>…Usually, yes, but federal FAFSA doesn't care. I will focus on the federal aspect. Okay, ready to write. ‖ Generally speaking, <b>no</b>, the FAFSA (Free Application for Federal Student Aid) does not automatically change based on the fact that you have "aged out" of foster care. However, there are a few nuances to consider…</blockquote>
+<p><span class="ev">F</span> Graded leniently, with the hidden thinking included, the original already had the right content 60% of the time. The ability was there and the loop hid it. That is the paper's thesis, reproduced out of domain with no re-tuning. Two qualifications: the edit is theirs, not ours; and thinking-plus-fix (64.6%) against the model's default non-thinking mode (54–61% on the same prompts) is a modest gain that is not yet significant. The remaining third of failures are the knowledge gaps of Experiment 3.</p>
+
+<details class="setup"><summary>Setup</summary>
+<ul>
+<li><b>Edit:</b> the paper's p50c submission, rebuilt with its <code>apply_edit.py</code> from H's safetensors file; 130,188 bfloat16 entries differ from the base, in <code>layers.15.mlp.down_proj</code> and <code>layers.19.mlp.down_proj</code>.</li>
+<li><b>Prompts:</b> a seeded random 48 of the 70 rule-graded prompts; thinking enabled; up to 4,096 new tokens; the model card's thinking-mode sampling. Both models see the same seeds, so answers share random numbers until the first differing token.</li>
+<li><b>Grading:</b> strict = regex checks on the text after <code>&lt;/think&gt;</code> only; a generation that never closed its thinking has no answer. Lenient = the same checks on the whole text. Loop score = share of repeated 8-grams, "looping" if above 0.3.</li>
+<li><b>Time:</b> 70 minutes on the Air for 96 generations.</li>
+</ul></details>
+
+<div class="exp">Experiment 5</div>
+<h2>Writing a circuit the model lacks: the DACA edit</h2>
+<p>The one aid-eligibility behaviour the model gets right, "international student → do not recommend the FAFSA", is exactly the behaviour it is missing for DACA and undocumented students, and both are errors with consequences. The paper's Experiment 4 added a small separate path through a few units to fix a stuck policy. Could the editor add a path here: a neuron that recognizes "I have DACA" and writes whatever "I'm an international student" writes?</p>
+<p>First the diagnosis. The displacement that "international student" produces in the residual stream at the end of its sentence is a consistent direction (cosine 0.94 across the 20 questions, 43% of the residual norm at layer 10). DACA projects −0.24 onto it, undocumented +0.06: there is no weak version of the pathway to amplify. No existing neuron in layers 4–12 is selective for both DACA and undocumented. So the editor built one.</p>
+
+<div class="callout">
+<p><strong>The detector.</strong> A near-dead neuron in layer 9's MLP (mean |activation| 0.011) is repurposed. Its gate row becomes 2·d₂ + κ·e₄₆, where d₂ is the direction separating the DACA/undocumented sentence summary from five control sentences, orthogonalized against the raw <code>undocumented</code> token so that "my parents are undocumented" does not trigger it, and dimension 46, the most constant input dimension, supplies the threshold. Its up row is e₄₆ scaled so the product is about 1. Its output column writes α·1.24·u, the international displacement, scaled so that a DACA sentence lands where an international one does. 3,071 weights. Simulated on recorded inputs it fires 8.2 on DACA, 1.2 on undocumented, at most 0.07 on every control and at position 0.</p>
+</div>
+
+<div class="tbl"><table>
+<tr><th>Placement and dose</th><th class="num">Δ log-odds FAFSA, DACA</th><th class="num">undocumented</th><th class="num">six controls</th><th>Model intact</th></tr>
+<tr class="hl"><td>layer 9, α = 1 (write 1.24·u)</td><td class="num"><b>−0.57</b> (SE 0.11)</td><td class="num">−0.07</td><td class="num">within ±0.10</td><td>yes, prompt log-probs identical</td></tr>
+<tr><td>layer 9, α = 4, lower threshold</td><td class="num">+0.53</td><td class="num">−0.71</td><td class="num">within ±0.10</td><td>yes</td></tr>
+<tr><td>layer 16, α = 1</td><td class="num">−0.02</td><td class="num">−0.02</td><td class="num">within ±0.10</td><td>yes</td></tr>
+<tr><td>layer 20, α = 1, fires on tokens and sentence end</td><td class="num">+0.03</td><td class="num">−0.05</td><td class="num">within ±0.05</td><td>yes</td></tr>
+</table></div>
+
+<p><span class="ev">F</span> The best version is a real, surgical, zero-collateral intervention, and it recovers <strong>18% of the natural effect</strong> (−0.57 of −3.2). Larger doses reverse it; later placements do nothing. The "no federal aid" computation is not carried by the sentence-summary displacement at any one layer; it is distributed across the phrase's tokens and the attention heads that read them. The paper reports that on a model that did not loop, editing "could remove an obstacle that hid an ability, but it could not add an ability the model lacked." Here is the same result, with the mechanism in view, in a domain where the missing ability is a student's eligibility for aid.</p>
+
+<h3>Two of three failures were ours, not the model's</h3>
+<p>The first two versions of the detector destroyed the model: the residual norm at positions 1–3 went from 1.6 to about 1,000. Both were harness-convention errors. The hidden state the server labels <code>hidden_L8</code> is the stream <em>entering</em> layer 8, not the input of layer 9's MLP, which also includes that layer's attention output. And Qwen3.5's RMSNorm is zero-centered, <code>y = x / rms(x) · (1 + weight)</code>, so a design that used <code>· weight</code> saw inputs five times too small. With both fixed, the true MLP input was reconstructed from recorded activations (<code>hidden_L10 − W_down · act_9</code>, then the norm) and checked against the recorded down-projection inputs: correlation 1.0000. The paper's 50-pass budgets exist for this reason, and the discipline that saved us was simulating every edit on recorded inputs before spending a pass on it.</p>
+
+<details class="setup"><summary>Setup</summary>
+<ul>
+<li><b>Probe:</b> 20 base questions × 8 statuses (none, international, not a citizen, green card, DACA, undocumented, citizen with undocumented parents, veteran), scored against "I'd recommend filling out the FAFSA"; teacher-forced, 160 chats, 12–14 seconds per pass. Residual streams at the sentence-final token and the last user-turn token at 12 layers; MLP activations at layers 4–20.</li>
+<li><b>Write direction u:</b> mean over the 20 questions of (international − mean of veteran, green card, citizen-with-undocumented-parents) at the sentence-final token, |u| = 0.85 against a residual norm of 2.0 at layer 10.</li>
+<li><b>Controls:</b> none, international, not a citizen, green card, citizen with undocumented parents, veteran. The last must not move: a citizen whose parents are undocumented is eligible, and conflating the two is the classic advising error.</li>
+<li><b>Passes spent on this line:</b> 8 of 30.</li>
+</ul></details>
+
+<div class="exp">Experiment 6</div>
+<h2>Where the socioeconomic steer lives</h2>
+<p>At the last token of the student's message, the displacement between "neither of my parents went to college" and "both of my parents went to Harvard" is a consistent direction (cosine with its mean 0.84 at layer 2, 0.6 by layer 16), peaking at 7% of the residual norm in layers 10–12. It is <em>not</em> the low-versus-high-income direction (cosine −0.1 to −0.2) and not the foster direction (about 0.1). <span class="ev">F</span> The model keeps "first-generation" and "income" as separate features that both lead to the same steer at the output. There is no single socioeconomic axis to edit; the place where the two converge is the readout, which is the knowledge-shaped end of the network.</p>
+
+<hr>
+
+<h2>What we learned about the method</h2>
+<p><strong>Weight reading finds representation; forward passes find behaviour; they disagree in both directions.</strong> <code>Pell</code> has a near-random embedding and a working association. <code>DACA</code> has a weak representation and a wrong behaviour. The paper's Experiment 7 warned that weights-only reading of a real language model's behavioural traits failed where attention probes succeeded; our version of that warning is that a claim needs its evidence class attached.</p>
+<p><strong>Editing removed an obstacle and could not add an association.</strong> +35 points from a published edit that never saw an advising prompt; 18% of the target from a verified circuit written for the purpose, then reversal. The paper's two results, the Qwen fix and the Gemma non-result, reproduce together in one domain on one model.</p>
+<p><strong>The harness is part of the experiment.</strong> Two conventions, one about layer indexing and one about a norm's parameterization, cost two edits. Everything that worked was simulated on recorded activations and verified against them before a pass was spent.</p>
+
+<h2>What this says about the model as an advisor</h2>
+<p>A student talking to Qwen3.5-0.8B gets a kind, confident answer that does not know what their GPA means, steers them by their parents' education and their income, sends foster youth and DACA students to "a counselor" instead of to options, tells DACA and undocumented students to file the FAFSA, and, for one in three factual questions, describes a term from a different field. The loop fix makes its reasoning mode usable; nothing in weight space supplied the missing knowledge.</p>
+
+<h2>What comes next</h2>
+<ul>
+<li>An unattended run with Fable at maximum effort on the improvement task, starting from the loop fix, with the GPA-value blindness as the target: the diagnostic would show whether it is obstacle-shaped or knowledge-shaped.</li>
+<li>The ground-truth version of Experiment 1: fine-tune copies on advising corpora from different sources, hide the labels, and ask the editor which is which from the weight differences (the paper's Experiment 7 design).</li>
+<li>Judge-graded scoring of the 20 open scenarios, original against the loop fix, thinking on.</li>
+</ul>
+
+<h2>Logs</h2>
+<p class="foot">Everything is file-based and reproducible from <code>~/qwen-0.8b/wsp/</code>: the kernel and server, the practice sets, every request and its result (<code>requests/</code>, <code>work/</code>), the analysis scripts, the edits tried (<code>dropped/</code>) and the one kept (<code>edited/</code>). The running log with every number is <code>experiment-log.md</code> in the Weight Programming v1 project; the method and scope are in the plan document there.</p>
+<p class="foot">Citation for the method: Rikiya Takehi, Jayden Teoh, Alex Zhang, and Omar Khattab. "Sparks of Weight-Space Programming: LLMs can natively read &amp; write neural network weights." November 2026. The edited checkpoint and logs they released are at <a href="https://github.com/RikiyaT/lm_understand-logs">github.com/RikiyaT/lm_understand-logs</a>.</p>
+</div>
+
+<script>
+(function(){
+  var css = getComputedStyle(document.documentElement);
+  function tok(n){ return css.getPropertyValue(n).trim(); }
+  var NS = "http://www.w3.org/2000/svg";
+  function el(tag, attrs, parent){ var e = document.createElementNS(NS, tag); for (var k in attrs) e.setAttribute(k, attrs[k]); if (parent) parent.appendChild(e); return e; }
+  function text(parent, x, y, s, attrs){ var t = el("text", Object.assign({x:x, y:y, fill:tok("--fg-2"), "font-size":12}, attrs||{}), parent); t.textContent = s; return t; }
+
+  /* Figure 1: feature-specific shifts (pp), three candidates per row */
+  var rows = [
+    ["foster care",            [-12,  -7, 31], [0,0,1]],
+    ["disability",             [ -7,  -2, 17], [0,0,1]],
+    ["parenting",              [ -4,  -2, 16.5], [0,0,1]],
+    ["DACA",                   [-14,  -3, 14], [1,0,1]],
+    ["international",          [-13,   5, -12], [1,1,1]],
+    ["rural",                  [ 14,  -2,  -7], [1,0,0]],
+    ["veteran",                [  9,   0, -10], [1,0,1]],
+    ["GPA 2.3",                [ -9,   0,   6], [1,0,0]],
+    ["GPA 3.9",                [-11,   4,   3], [1,0,0]],
+    ["first-gen − Harvard parents", [16.5, -12, -2.5], [1,1,0]],
+    ["low − high income",      [  2, -10,  15], [0,1,1]]
+  ];
+  var cols = [tok("--s1"), tok("--s2"), tok("--s3")];
+  var svg = document.getElementById("svg-steer");
+  var W = 720, left = 210, right = 24, top = 24, rowH = 40, bar = 9, gap = 2;
+  var H = top + rows.length*rowH + 36; svg.setAttribute("viewBox", "0 0 "+W+" "+H);
+  var min = -20, max = 35, span = W - left - right;
+  function x(v){ return left + (v - min)/(max - min)*span; }
+  [-20,-10,0,10,20,30].forEach(function(v){
+    el("line", {x1:x(v), x2:x(v), y1:top-6, y2:top+rows.length*rowH, stroke: v===0? tok("--fg-3") : tok("--rule"), "stroke-width":1}, svg);
+    text(svg, x(v), top+rows.length*rowH+18, (v>0?"+":"")+v, {"text-anchor":"middle", "font-size":11});
+  });
+  text(svg, x(0), top+rows.length*rowH+32, "change in probability, percentage points", {"text-anchor":"middle","font-size":11, fill:tok("--fg-3")});
+  rows.forEach(function(r, i){
+    var y0 = top + i*rowH;
+    if (i === 9) el("line", {x1:left-200, x2:W-right, y1:y0-4, y2:y0-4, stroke:tok("--rule"), "stroke-width":1}, svg);
+    text(svg, left-10, y0 + rowH/2 + 4, r[0], {"text-anchor":"end", fill:tok("--fg"), "font-size":13});
+    r[1].forEach(function(v, j){
+      var y = y0 + 3 + j*(bar+gap);
+      var x0 = Math.min(x(0), x(v)), w = Math.abs(x(v)-x(0));
+      var rect = el("rect", {x:x0, y:y, width:Math.max(w,1), height:bar, fill:cols[j], rx:0}, svg);
+      var t = el("title", {}, rect); t.textContent = r[0]+": "+["community college","selective university","talk to your counselor"][j]+" "+(v>0?"+":"")+v+" pp";
+      if (r[2][j]) text(svg, v>=0 ? x(v)+6 : x(v)-6, y+bar-1, "●", {"text-anchor": v>=0?"start":"end", "font-size":8, fill:tok("--fg")});
+    });
+  });
+
+  /* Figure 2: thinking mode, original vs edited */
+  var m = [["answered", 41.7, 100], ["cut at limit", 58, 0], ["looping", 52, 0], ["accuracy", 29.2, 64.6]];
+  var s2 = document.getElementById("svg-loop");
+  var W2 = 720, H2 = 300, l2 = 24, r2 = 24, t2 = 20, b2 = 44, groupW = (W2-l2-r2)/m.length, bw = 24, g2 = 2;
+  var plotH = H2 - t2 - b2;
+  function y2(v){ return t2 + plotH - v/100*plotH; }
+  [0,25,50,75,100].forEach(function(v){
+    el("line", {x1:l2, x2:W2-r2, y1:y2(v), y2:y2(v), stroke:tok("--rule"), "stroke-width":1}, s2);
+    text(s2, l2, y2(v)-4, v+"%", {"font-size":11, fill:tok("--fg-3")});
+  });
+  m.forEach(function(d, i){
+    var cx = l2 + groupW*i + groupW/2;
+    [[d[1], tok("--s1"), -bw-g2/2], [d[2], tok("--s2"), g2/2]].forEach(function(b){
+      var h = Math.max(1, y2(0)-y2(b[0]));
+      var rect = el("rect", {x:cx+b[2], y:y2(b[0]), width:bw, height:h, fill:b[1]}, s2);
+      var t = el("title", {}, rect); t.textContent = d[0]+": "+b[0]+"%";
+      text(s2, cx+b[2]+bw/2, y2(b[0])-6, b[0]+"%", {"text-anchor":"middle", "font-size":12, fill:tok("--fg")});
+    });
+    text(s2, cx, H2-b2+22, d[0], {"text-anchor":"middle", "font-size":13, fill:tok("--fg")});
+  });
+  el("line", {x1:l2, x2:W2-r2, y1:y2(0), y2:y2(0), stroke:tok("--fg-3"), "stroke-width":1}, s2);
+})();
+</script>
+
+</body>
+</html>
