@@ -1,0 +1,134 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1340 968" width="1340" height="968" font-family="IBM Plex Sans, Helvetica Neue, Arial, sans-serif">
+  <rect width="1340" height="968" fill="#f7f8f6"/>
+  <text x="40" y="44" font-size="24" font-weight="600" fill="#17201e">Four levers for improving a college-advising model: what each fixes, and what we have measured</text>
+  <text x="40" y="68" font-size="13" fill="#5a6563">Hill-climbing (autoresearch) is the search procedure; the other three are the substrate it climbs over. Evidence: H's projects (DHSS, Fortino, Sentinel), this week's weight-space runs, and the Takehi et al. paper.</text>
+
+  <!-- ===== Panel A: deficit x lever matrix ===== -->
+  <text x="40" y="108" font-size="15" font-weight="600" fill="#17201e">A. Which lever can fix which deficit (circle = expected effectiveness; ring = measured by us or the paper)</text>
+  <!-- column headers -->
+  <g font-size="13" fill="#17201e" font-weight="600" text-anchor="middle">
+    <text x="420" y="140">Context injection</text><text x="420" y="156" font-size="11" font-weight="400" fill="#5a6563">prompt / RAG / schema</text>
+    <text x="560" y="140">Fine-tuning</text><text x="560" y="156" font-size="11" font-weight="400" fill="#5a6563">SFT / DPO on data</text>
+    <text x="700" y="140">Weight-space</text><text x="700" y="156" font-size="11" font-weight="400" fill="#5a6563">editing by reasoning</text>
+    <text x="840" y="140">Frontier model</text><text x="840" y="156" font-size="11" font-weight="400" fill="#5a6563">+ context (the baseline to beat)</text>
+  </g>
+  <line x1="40" y1="166" x2="920" y2="166" stroke="#c9d0ce" stroke-width="1"/>
+  <!-- rows -->
+  <g font-size="13" fill="#17201e">
+    <text x="40" y="200">Knowledge gaps</text><text x="40" y="216" font-size="11" fill="#5a6563">TASFA, SAI, score scales, "rolling admissions"</text>
+    <text x="40" y="250">Freshness</text><text x="40" y="266" font-size="11" fill="#5a6563">deadlines, Pell amounts, policy changes</text>
+    <text x="40" y="300">Obstacle behaviours</text><text x="40" y="316" font-size="11" fill="#5a6563">thinking loops, a default that fires regardless</text>
+    <text x="40" y="350">Calibration / safety</text><text x="40" y="366" font-size="11" fill="#5a6563">"2.3 GPA = strong contender", DACA → FAFSA</text>
+    <text x="40" y="400">Steering by background</text><text x="40" y="416" font-size="11" fill="#5a6563">first-gen → community college, −12 pp selective</text>
+    <text x="40" y="450">Auditability of the change</text><text x="40" y="466" font-size="11" fill="#5a6563">can you say exactly what changed and why</text>
+  </g>
+  <g stroke="#e3e8e6" stroke-width="1">
+    <line x1="40" y1="228" x2="920" y2="228"/><line x1="40" y1="278" x2="920" y2="278"/><line x1="40" y1="328" x2="920" y2="328"/>
+    <line x1="40" y1="378" x2="920" y2="378"/><line x1="40" y1="428" x2="920" y2="428"/><line x1="40" y1="478" x2="920" y2="478"/>
+  </g>
+  <!-- circles: r 6 low, 11 medium, 16 high; ring = measured -->
+  <!-- Knowledge gaps -->
+  <circle cx="420" cy="204" r="16" fill="#2a78d6"/><circle cx="420" cy="204" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="560" cy="204" r="11" fill="#eb6834"/>
+  <circle cx="700" cy="204" r="5" fill="#6250d6"/><circle cx="700" cy="204" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="840" cy="204" r="16" fill="#1baf7a"/>
+  <!-- Freshness -->
+  <circle cx="420" cy="254" r="16" fill="#2a78d6"/>
+  <circle cx="560" cy="254" r="5" fill="#eb6834"/>
+  <circle cx="700" cy="254" r="5" fill="#6250d6"/>
+  <circle cx="840" cy="254" r="16" fill="#1baf7a"/>
+  <!-- Obstacles -->
+  <circle cx="420" cy="304" r="6" fill="#2a78d6"/><circle cx="420" cy="304" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="560" cy="304" r="11" fill="#eb6834"/>
+  <circle cx="700" cy="304" r="16" fill="#6250d6"/><circle cx="700" cy="304" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="840" cy="304" r="11" fill="#1baf7a"/>
+  <!-- Calibration -->
+  <circle cx="420" cy="354" r="11" fill="#2a78d6"/>
+  <circle cx="560" cy="354" r="11" fill="#eb6834"/>
+  <circle cx="700" cy="354" r="6" fill="#6250d6"/><circle cx="700" cy="354" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/><circle cx="700" cy="354" r="27" fill="none" stroke="#b8860b" stroke-width="2" stroke-dasharray="5 4"/>
+  <circle cx="840" cy="354" r="16" fill="#1baf7a"/>
+  <!-- Steering -->
+  <circle cx="420" cy="404" r="11" fill="#2a78d6"/><circle cx="420" cy="404" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="560" cy="404" r="11" fill="#eb6834"/>
+  <circle cx="700" cy="404" r="6" fill="#6250d6"/><circle cx="700" cy="404" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="840" cy="404" r="11" fill="#1baf7a"/>
+  <!-- Auditability -->
+  <circle cx="420" cy="454" r="16" fill="#2a78d6"/>
+  <circle cx="560" cy="454" r="5" fill="#eb6834"/>
+  <circle cx="700" cy="454" r="16" fill="#6250d6"/><circle cx="700" cy="454" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="840" cy="454" r="11" fill="#1baf7a"/>
+  <!-- notes column -->
+  <g font-size="11" fill="#5a6563">
+    <text x="930" y="200">context: DHSS suite +16 pp; WSP: frame re-ask fixed 1 of 9</text>
+    <text x="930" y="250">weights go stale the day a policy changes</text>
+    <text x="930" y="300">WSP loop fix: 29 → 65% on advising, 0 regressions</text>
+    <text x="930" y="350">WSP DACA circuit: 18% of target, then reversal</text><text x="930" y="366" fill="#b8860b" font-weight="600">dashed ring: the pending GPA run re-sizes this cell</text>
+    <text x="930" y="400">DHSS equity prompting +1.6 pp; WSP: no single axis to edit</text>
+    <text x="930" y="450">WSP names the neurons; a fine-tune cannot</text>
+  </g>
+  <line x1="40" y1="478" x2="920" y2="478" stroke="#e3e8e6" stroke-width="1"/>
+  <g font-size="13" fill="#17201e">
+    <text x="40" y="500">Improvement per unit cost</text><text x="40" y="516" font-size="11" fill="#5a6563">rubric points per $ and per attended hour (see table)</text>
+  </g>
+  <!-- context: high, measured (DHSS +16 pp for ~tens of $ of judge calls) -->
+  <circle cx="420" cy="504" r="16" fill="#2a78d6"/><circle cx="420" cy="504" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <!-- fine-tuning: medium, not measured -->
+  <circle cx="560" cy="504" r="11" fill="#eb6834"/>
+  <!-- weight editing: bimodal, both measured: reuse of a known obstacle fix (high) vs searching for a knowledge fix (~0) -->
+  <circle cx="688" cy="504" r="16" fill="#6250d6"/><circle cx="688" cy="504" r="20" fill="none" stroke="#17201e" stroke-width="1.5"/>
+  <circle cx="722" cy="504" r="4" fill="#6250d6"/><circle cx="722" cy="504" r="9" fill="none" stroke="#17201e" stroke-width="1.5"/><circle cx="752" cy="504" r="9" fill="none" stroke="#b8860b" stroke-width="2" stroke-dasharray="4 3"/><text x="752" y="508" font-size="10" font-weight="600" fill="#b8860b" text-anchor="middle">?</text><text x="752" y="523" font-size="9" font-weight="600" fill="#b8860b" text-anchor="middle">pending</text>
+  <!-- frontier: medium (pays per query forever; high ceiling) -->
+  <circle cx="840" cy="504" r="11" fill="#1baf7a"/>
+  <g font-size="11" fill="#5a6563">
+    <text x="930" y="500">context: ~0.1–0.3 pp per $ (DHSS Phase 1), then ~0.01 pp per $ (Phase 3)</text>
+    <text x="930" y="516">weights: +35 pp for ~1 h reusing a known fix; ≈0 pp for 8 passes seeking one</text><text x="930" y="532" font-size="10" fill="#b8860b" font-weight="600">dashed ? = a successful search for an advising fix, priced by the pending GPA run</text>
+  </g>
+  <line x1="40" y1="530" x2="920" y2="530" stroke="#c9d0ce" stroke-width="1"/>
+  <!-- legend for A -->
+  <g font-size="11" fill="#5a6563">
+    <circle cx="48" cy="554" r="5" fill="#9aa5a2"/><text x="60" y="558">low</text>
+    <circle cx="100" cy="554" r="11" fill="#9aa5a2"/><text x="118" y="558">medium</text>
+    <circle cx="180" cy="554" r="16" fill="#9aa5a2"/><text x="203" y="558">high expected effectiveness</text>
+    <circle cx="360" cy="554" r="9" fill="none" stroke="#17201e" stroke-width="1.5"/><text x="376" y="558">measured (H's projects or the paper); unringed = expected, not yet measured for advising</text>
+  </g>
+
+  <!-- ===== Panel B: observed lifts ===== -->
+  <text x="40" y="606" font-size="15" font-weight="600" fill="#17201e">B. Lifts actually observed (percentage points on a graded eval; each bar is a different eval: compare direction and order of magnitude, not exact values)</text>
+  <g font-size="12" fill="#17201e">
+    <!-- axis -->
+    <line x1="470" y1="628" x2="470" y2="900" stroke="#9aa5a2" stroke-width="1"/>
+    <g font-size="10" fill="#7b8683" text-anchor="middle">
+      <text x="370" y="914">−10</text><text x="470" y="914">0</text><text x="570" y="914">+10</text><text x="670" y="914">+20</text><text x="770" y="914">+30</text><text x="870" y="914">+40</text>
+    </g>
+    <g stroke="#e3e8e6" stroke-width="1"><line x1="370" y1="628" x2="370" y2="900"/><line x1="570" y1="628" x2="570" y2="900"/><line x1="670" y1="628" x2="670" y2="900"/><line x1="770" y1="628" x2="770" y2="900"/><line x1="870" y1="628" x2="870" y2="900"/></g>
+    <!-- scale: 10 px per pp -->
+    <!-- 1 context: DHSS full public-goods suite +16 -->
+    <text x="40" y="646" text-anchor="start">Context injection · DHSS public-goods suite (Phase 1)</text>
+    <rect x="470" y="634" width="160" height="14" fill="#2a78d6"/><text x="636" y="646" font-size="11" fill="#17201e">+16 pp, judge-rated</text>
+    <!-- 2 context: DHSS equity prompting +1.6 -->
+    <text x="40" y="672">Context injection · DHSS equity prompting (Phase 3, 32 experiments)</text>
+    <rect x="470" y="660" width="16" height="14" fill="#2a78d6"/><text x="492" y="672" font-size="11">+1.6 pp, the best single lever found</text>
+    <!-- 3 context: DHSS L3 named-institution content -8.2 -->
+    <text x="40" y="698">Context injection · DHSS L3 named-institution content</text>
+    <rect x="388" y="686" width="82" height="14" fill="#2a78d6"/><text x="476" y="698" font-size="11">−8.2 pp: more content hurt</text>
+    <!-- 4 context: Fortino -->
+    <text x="40" y="724">Context injection · Fortino compliance (26 experiments, 60 scenarios)</text>
+    <text x="478" y="724" font-size="11" fill="#5a6563">structure beat volume; standalone framework injection was harmful (composite rubric; pp not comparable)</text>
+    <!-- 5 WSP loop fix on advising +35 -->
+    <text x="40" y="750">Weight-space · paper's loop fix on advising, thinking mode (this week)</text>
+    <rect x="470" y="738" width="354" height="14" fill="#6250d6"/><text x="830" y="750" font-size="11">+35.4 pp (SE 7), 17 wrong→right, 0 right→wrong</text>
+    <!-- 6 WSP DACA circuit ~0 -->
+    <text x="40" y="776">Weight-space · our DACA eligibility circuit (this week)</text>
+    <rect x="470" y="764" width="3" height="14" fill="#6250d6"/><text x="480" y="776" font-size="11">≈ 0 pp: 18% of the target in log-odds, reversed at higher dose</text>
+    <!-- 7 paper MATH +40 -->
+    <text x="40" y="802">Weight-space · Takehi et al., Qwen3.5-0.8B MATH-500 (50 passes, 20 h)</text>
+    <rect x="470" y="790" width="402" height="14" fill="#6250d6" opacity="0.55"/><text x="878" y="802" font-size="11">+40.2 pp</text>
+    <!-- 8 paper Gemma +1 -->
+    <text x="40" y="828">Weight-space · Takehi et al., Gemma 270M (no loops to remove)</text>
+    <rect x="470" y="816" width="9" height="14" fill="#6250d6" opacity="0.55"/><text x="486" y="828" font-size="11">+0.9 pp: could not add an ability</text>
+    <!-- 9 fine-tuning: not measured -->
+    <text x="40" y="854">Weight-space · GPA-value calibration, unattended Fable run (pending)</text><rect x="470" y="842" width="120" height="14" fill="none" stroke="#b8860b" stroke-width="1.5" stroke-dasharray="5 4"/><text x="596" y="854" font-size="11" font-weight="600" fill="#b8860b">? pp on 16 held-out items · 30 passes · $50–120 · 6–10 h — fills A (calibration), this bar, and the cost row</text><text x="40" y="880">Fine-tuning · DHSS SFT/DPO pipeline (LoRA on Gemma, Unsloth)</text>
+    <text x="478" y="880" font-size="11" fill="#5a6563">pipeline built; no lift recorded yet — not filled by the GPA run (needs arm D)</text>
+  </g>
+  <text x="40" y="938" font-size="11" fill="#b8860b" font-weight="600">Dashed amber = what the pending unattended GPA run fills in. Not filled by it: the fine-tuning column, the frontier baseline, context injection on this prompt set, freshness (arms C–E of the framework).</text><text x="40" y="956" font-size="11" fill="#7b8683">Autoresearch as the procedure: Sentinel reached Gini 0.502 by experiment 94 (pricing model, not an LLM); DHSS Phase 3 ran 32 experiments; Fortino 26. The cost of every lever here is dominated by the same thing: rubric evaluations per experiment.</text>
+</svg>
