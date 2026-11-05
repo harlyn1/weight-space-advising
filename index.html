@@ -282,6 +282,13 @@ pre{background:var(--surface);border:1px solid var(--rule);border-radius:6px;pad
 <h2>What this says about the model as an advisor</h2>
 <p>A student talking to Qwen3.5-0.8B gets a kind, confident answer that does not know what their GPA means, steers them by their parents' education and their income, sends foster youth and DACA students to "a counselor" instead of to options, tells DACA and undocumented students to file the FAFSA, and, for one in three factual questions, describes a term from a different field. The loop fix makes its reasoning mode usable; nothing in weight space supplied the missing knowledge.</p>
 
+<h2>Where weight editing sits among the other levers</h2>
+<p>Everything above is about one lever. The chart places it beside the alternatives for improving an advising model, context injection, fine-tuning, and a frontier model with context, by which deficit each can fix and what has actually been measured, including earlier autoresearch work on the same kind of evaluation loop (the DHSS public-goods suite, the Fortino compliance benchmark, Sentinel). Hill-climbing is the shared procedure; the levers are what it climbs over, and the rubric evaluations are the shared cost. Dashed amber marks what the pending unattended run fills in.</p>
+<div class="fig">
+<a href="levers.svg"><img src="levers.svg" alt="Matrix of four improvement levers against six advising deficits, with the lifts observed so far as bars" style="width:100%;height:auto;display:block;border-radius:4px"></a>
+<p class="cap"><b>Figure 3.</b> Panel A: which lever can fix which deficit (circle = expected effectiveness, ring = measured). Panel B: lifts observed across the projects and the paper; each bar is a different evaluation, so compare direction and order of magnitude. Open the image for full size.</p>
+</div>
+
 <h2>What comes next</h2>
 <ul>
 <li>An unattended run with Fable at maximum effort on the improvement task, starting from the loop fix, with the GPA-value blindness as the target: the diagnostic would show whether it is obstacle-shaped or knowledge-shaped.</li>
