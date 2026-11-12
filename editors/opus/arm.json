@@ -1,0 +1,14 @@
+{
+ "model": "claude-opus-5-5",
+ "effort": "max",
+ "task": "work/task_opus.md",
+ "started": "2026-11-07 08:20:50",
+ "sessions": [
+  {
+   "started": "2026-11-07 19:07:38",
+   "turn_from": 401,
+   "pid": 42925,
+   "ppid": 37935
+  }
+ ]
+}

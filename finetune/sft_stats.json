@@ -1,0 +1,17 @@
+{
+ "model": "claude-sonnet-5-5",
+ "kept": 225,
+ "dropped": [
+  "f009",
+  "s002",
+  "s027",
+  "gpa_c09",
+  "elig_r03",
+  "cal_h08",
+  "cal_h09"
+ ],
+ "tokens_in": 546098,
+ "tokens_out": 161505,
+ "cost_usd": 2.71,
+ "finished": "2026-11-06 03:46:48"
+}

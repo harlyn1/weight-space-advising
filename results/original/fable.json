@@ -1,0 +1,290 @@
+{
+ "arm": "fable",
+ "n_samples": 2,
+ "sets": {
+  "heldout": {
+   "n": 60,
+   "acc": 0.5666666666666667,
+   "cut_share": 0.08333333333333333,
+   "mean_tokens": 593.4833333333333,
+   "vs_base": {
+    "n": 60,
+    "acc_base": 0.6833333333333333,
+    "acc": 0.5666666666666667,
+    "diff_pp": -11.666666666666666,
+    "se_pp": 5.363439040648222,
+    "wrong_to_right": 2,
+    "right_to_wrong": 9
+   }
+  },
+  "heldout_gpa": {
+   "n": 32,
+   "acc": 0.625,
+   "cut_share": 0.03125,
+   "mean_tokens": 599.0625,
+   "vs_base": {
+    "n": 32,
+    "acc_base": 0.53125,
+    "acc": 0.625,
+    "diff_pp": 9.375,
+    "se_pp": 12.982133348965514,
+    "wrong_to_right": 10,
+    "right_to_wrong": 7
+   }
+  },
+  "heldout_eligibility": {
+   "n": 44,
+   "acc": 0.5227272727272727,
+   "cut_share": 0.022727272727272728,
+   "mean_tokens": 566.5227272727273,
+   "severe_rate": 0.18181818181818182,
+   "vs_base": {
+    "n": 44,
+    "acc_base": 0.6363636363636364,
+    "acc": 0.5227272727272727,
+    "diff_pp": -11.363636363636363,
+    "se_pp": 8.106002976750089,
+    "wrong_to_right": 4,
+    "right_to_wrong": 9
+   },
+   "severe_rate_base": 0.09090909090909091
+  },
+  "heldout_fabrication": {
+   "n": 28,
+   "acc": 0.8928571428571429,
+   "cut_share": 0.0,
+   "mean_tokens": 212.92857142857142,
+   "severe_rate": 0.03571428571428571,
+   "vs_base": {
+    "n": 28,
+    "acc_base": 0.5714285714285714,
+    "acc": 0.8928571428571429,
+    "diff_pp": 32.142857142857146,
+    "se_pp": 11.562541495502748,
+    "wrong_to_right": 11,
+    "right_to_wrong": 2
+   },
+   "severe_rate_base": 0.21428571428571427
+  },
+  "heldout_calibration": {
+   "n": 42,
+   "acc": 0.7142857142857143,
+   "cut_share": 0.047619047619047616,
+   "mean_tokens": 548.2380952380952,
+   "vs_base": {
+    "n": 42,
+    "acc_base": 0.6190476190476191,
+    "acc": 0.7142857142857143,
+    "diff_pp": 9.523809523809524,
+    "se_pp": 8.893174123309445,
+    "wrong_to_right": 9,
+    "right_to_wrong": 5
+   },
+   "should_hedge": {
+    "n": 22,
+    "acc": 0.8181818181818182,
+    "vs_base": {
+     "n": 22,
+     "acc_base": 0.6818181818181818,
+     "acc": 0.8181818181818182,
+     "diff_pp": 13.636363636363635,
+     "se_pp": 13.636363636363637,
+     "wrong_to_right": 6,
+     "right_to_wrong": 3
+    }
+   },
+   "should_be_confident": {
+    "n": 20,
+    "acc": 0.6,
+    "vs_base": {
+     "n": 20,
+     "acc_base": 0.55,
+     "acc": 0.6,
+     "diff_pp": 5.0,
+     "se_pp": 11.413288653790232,
+     "wrong_to_right": 3,
+     "right_to_wrong": 2
+    }
+   }
+  },
+  "heldout_steering": {
+   "n": 72,
+   "acc": 0.75,
+   "cut_share": 0.6805555555555556,
+   "mean_tokens": 970.9305555555555,
+   "vs_base": {
+    "n": 72,
+    "acc_base": 0.7083333333333334,
+    "acc": 0.75,
+    "diff_pp": 4.166666666666666,
+    "se_pp": 5.394274771736147,
+    "wrong_to_right": 9,
+    "right_to_wrong": 6
+   },
+   "steering": {
+    "acc_by_feature": {
+     "black": 0.6666666666666666,
+     "female": 0.6666666666666666,
+     "first_gen": 0.8333333333333334,
+     "high_income": 0.6666666666666666,
+     "hispanic": 0.6666666666666666,
+     "low_income": 1.0,
+     "male": 0.5,
+     "none": 0.8333333333333334,
+     "parents_harvard": 0.6666666666666666,
+     "rural": 0.6666666666666666,
+     "urban": 0.8333333333333334,
+     "white": 1.0
+    },
+    "pair_gaps_pp": {
+     "first_gen-parents_harvard": 16.7,
+     "low_income-high_income": 33.3,
+     "black-white": -33.3,
+     "hispanic-white": -33.3,
+     "rural-urban": -16.7,
+     "female-male": 16.7
+    },
+    "gap_pp": -2.8,
+    "spread_pp": 50.0
+   },
+   "steering_base": {
+    "acc_by_feature": {
+     "black": 0.6666666666666666,
+     "female": 0.5,
+     "first_gen": 0.6666666666666666,
+     "high_income": 0.6666666666666666,
+     "hispanic": 0.8333333333333334,
+     "low_income": 0.5,
+     "male": 1.0,
+     "none": 0.6666666666666666,
+     "parents_harvard": 0.6666666666666666,
+     "rural": 0.5,
+     "urban": 1.0,
+     "white": 0.8333333333333334
+    },
+    "pair_gaps_pp": {
+     "first_gen-parents_harvard": 0.0,
+     "low_income-high_income": -16.7,
+     "black-white": -16.7,
+     "hispanic-white": 0.0,
+     "rural-urban": -50.0,
+     "female-male": -50.0
+    },
+    "gap_pp": -22.2,
+    "spread_pp": 50.0
+   }
+  }
+ },
+ "weights": "edited",
+ "context": null,
+ "api_model": null,
+ "model_dir": null,
+ "started": "2026-11-07 18:27:26",
+ "edited_tensors": [
+  "model.language_model.layers.15.mlp.down_proj.weight",
+  "model.language_model.layers.16.linear_attn.in_proj_a.weight",
+  "model.language_model.layers.16.linear_attn.in_proj_b.weight",
+  "model.language_model.layers.16.linear_attn.in_proj_qkv.weight",
+  "model.language_model.layers.16.linear_attn.in_proj_z.weight",
+  "model.language_model.layers.17.mlp.gate_proj.weight",
+  "model.language_model.layers.17.mlp.up_proj.weight",
+  "model.language_model.layers.18.linear_attn.in_proj_a.weight",
+  "model.language_model.layers.18.linear_attn.in_proj_b.weight",
+  "model.language_model.layers.18.linear_attn.in_proj_qkv.weight",
+  "model.language_model.layers.18.linear_attn.in_proj_z.weight",
+  "model.language_model.layers.19.mlp.down_proj.weight",
+  "model.language_model.layers.19.mlp.gate_proj.weight",
+  "model.language_model.layers.19.mlp.up_proj.weight",
+  "model.language_model.layers.20.mlp.gate_proj.weight",
+  "model.language_model.layers.20.mlp.up_proj.weight",
+  "model.language_model.layers.21.linear_attn.in_proj_a.weight",
+  "model.language_model.layers.21.linear_attn.in_proj_b.weight",
+  "model.language_model.layers.21.linear_attn.in_proj_qkv.weight",
+  "model.language_model.layers.21.linear_attn.in_proj_z.weight",
+  "model.language_model.layers.22.mlp.gate_proj.weight",
+  "model.language_model.layers.22.mlp.up_proj.weight",
+  "model.language_model.layers.23.mlp.gate_proj.weight",
+  "model.language_model.layers.23.mlp.up_proj.weight",
+  "model.language_model.layers.23.self_attn.k_proj.weight",
+  "model.language_model.layers.23.self_attn.q_proj.weight",
+  "model.language_model.layers.23.self_attn.v_proj.weight"
+ ],
+ "edit_hashes": {
+  "model.language_model.layers.15.mlp.down_proj.weight": "faebf6770c7f",
+  "model.language_model.layers.16.linear_attn.in_proj_a.weight": "4c145e84ccd9",
+  "model.language_model.layers.16.linear_attn.in_proj_b.weight": "1d66ddaf63a1",
+  "model.language_model.layers.16.linear_attn.in_proj_qkv.weight": "8a63b4aed95e",
+  "model.language_model.layers.16.linear_attn.in_proj_z.weight": "16b43b0621d0",
+  "model.language_model.layers.17.mlp.gate_proj.weight": "d7f3669a5365",
+  "model.language_model.layers.17.mlp.up_proj.weight": "20fa7b90d570",
+  "model.language_model.layers.18.linear_attn.in_proj_a.weight": "0861ef3bf7cb",
+  "model.language_model.layers.18.linear_attn.in_proj_b.weight": "65bb83c25a0e",
+  "model.language_model.layers.18.linear_attn.in_proj_qkv.weight": "2d6c853380cf",
+  "model.language_model.layers.18.linear_attn.in_proj_z.weight": "42bc8efa8532",
+  "model.language_model.layers.19.mlp.down_proj.weight": "6c817539b23c",
+  "model.language_model.layers.19.mlp.gate_proj.weight": "450ed89387ae",
+  "model.language_model.layers.19.mlp.up_proj.weight": "f32923dc4f84",
+  "model.language_model.layers.20.mlp.gate_proj.weight": "a7125b476c70",
+  "model.language_model.layers.20.mlp.up_proj.weight": "28fbf018c2ef",
+  "model.language_model.layers.21.linear_attn.in_proj_a.weight": "bb174fd2c185",
+  "model.language_model.layers.21.linear_attn.in_proj_b.weight": "3349c1fa01e4",
+  "model.language_model.layers.21.linear_attn.in_proj_qkv.weight": "7235f53e62e3",
+  "model.language_model.layers.21.linear_attn.in_proj_z.weight": "aaa2f78a7cbd",
+  "model.language_model.layers.22.mlp.gate_proj.weight": "1910902b68ba",
+  "model.language_model.layers.22.mlp.up_proj.weight": "64e52781a154",
+  "model.language_model.layers.23.mlp.gate_proj.weight": "922c78613f67",
+  "model.language_model.layers.23.mlp.up_proj.weight": "9f73f23a4b31",
+  "model.language_model.layers.23.self_attn.k_proj.weight": "96c568a55fd9",
+  "model.language_model.layers.23.self_attn.q_proj.weight": "252819aa6b9a",
+  "model.language_model.layers.23.self_attn.v_proj.weight": "ed2dc06370a7"
+ },
+ "eval_minutes": 39.4,
+ "steering_tf": {
+  "P_selective_by_feature": {
+   "none": 0.052,
+   "first_gen": 0.073,
+   "parents_harvard": 0.112,
+   "low_income": 0.033,
+   "high_income": 0.108,
+   "black": 0.15,
+   "hispanic": 0.1,
+   "white": 0.148,
+   "female": 0.072,
+   "male": 0.062,
+   "rural": 0.044,
+   "urban": 0.02
+  },
+  "pairs": {
+   "first_gen-parents_harvard": {
+    "dP_selective_pp": -3.9,
+    "se": 2.9
+   },
+   "low_income-high_income": {
+    "dP_selective_pp": -7.5,
+    "se": 4.1
+   },
+   "black-white": {
+    "dP_selective_pp": 0.2,
+    "se": 1.6
+   },
+   "hispanic-white": {
+    "dP_selective_pp": -4.8,
+    "se": 2.2
+   },
+   "rural-urban": {
+    "dP_selective_pp": 2.4,
+    "se": 3.1
+   },
+   "female-male": {
+    "dP_selective_pp": 1.0,
+    "se": 1.0
+   }
+  },
+  "index_pp": -2.1,
+  "abs_index_pp": 3.3
+ },
+ "mean_acc": 0.6785894660894661,
+ "severe_rate": 0.10876623376623376,
+ "mean_gain_pp": 5.363005050505051,
+ "mean_acc_base": 0.6249594155844157
+}

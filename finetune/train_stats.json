@@ -1,0 +1,42 @@
+{
+ "examples": 203,
+ "dev_examples": 22,
+ "trainable_params": 6389760,
+ "epochs": [
+  {
+   "epoch": 1,
+   "train_loss": 2.165022979228955,
+   "dev_loss": 1.922994608228857,
+   "minutes": 3.7
+  },
+  {
+   "epoch": 2,
+   "train_loss": 1.7511850002363984,
+   "dev_loss": 1.7603389566594905,
+   "minutes": 7.3
+  },
+  {
+   "epoch": 3,
+   "train_loss": 1.600369764959871,
+   "dev_loss": 1.7376280535351147,
+   "minutes": 10.9
+  }
+ ],
+ "dev_loss_before": 2.6279490319165317,
+ "config": {
+  "sft": "/Users/harlyn/qwen-0.8b/wsp/finetune/../finetune/sft.jsonl",
+  "out": "/Users/harlyn/qwen-0.8b/wsp/finetune/../finetune/merged",
+  "epochs": 3,
+  "lr": 0.0001,
+  "r": 16,
+  "batch": 1,
+  "accum": 8,
+  "max_len": 1024,
+  "device": null,
+  "dtype": "bf16",
+  "seed": 0
+ },
+ "device": "mps",
+ "minutes_total": 10.9,
+ "merged_dir": "/Users/harlyn/qwen-0.8b/wsp/finetune/../finetune/merged"
+}

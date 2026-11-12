@@ -1,0 +1,14 @@
+{
+ "model": "claude-sonnet-5-5",
+ "effort": "max",
+ "task": "work/task_sonnet.md",
+ "started": "2026-11-10 11:56:41",
+ "sessions": [
+  {
+   "started": "2026-11-10 11:56:41",
+   "turn_from": 1,
+   "pid": 21975,
+   "ppid": 5856
+  }
+ ]
+}

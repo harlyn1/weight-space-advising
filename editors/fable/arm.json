@@ -1,0 +1,14 @@
+{
+ "model": "claude-fable-5-1",
+ "effort": "max",
+ "task": "work/task_fable.md",
+ "started": "2026-11-07 08:09:11",
+ "sessions": [
+  {
+   "started": "2026-11-07 14:25:44",
+   "turn_from": 426,
+   "pid": 38525,
+   "ppid": 37935
+  }
+ ]
+}

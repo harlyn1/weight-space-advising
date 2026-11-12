@@ -1,0 +1,20 @@
+{
+ "model": "accounts/fireworks/models/kimi-k3",
+ "effort": "max",
+ "task": "work/task_kimi.md",
+ "started": "2026-11-09 07:27:54",
+ "sessions": [
+  {
+   "started": "2026-11-09 07:27:54",
+   "turn_from": 1,
+   "pid": 93083,
+   "ppid": 92411
+  },
+  {
+   "started": "2026-11-09 08:58:30",
+   "turn_from": 150,
+   "pid": 94859,
+   "ppid": 94794
+  }
+ ]
+}

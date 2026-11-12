@@ -1,0 +1,14 @@
+{
+ "model": "gpt-6-astra",
+ "effort": "max",
+ "task": "work/task_astra.md",
+ "started": "2026-11-08 05:05:50",
+ "sessions": [
+  {
+   "started": "2026-11-08 05:05:50",
+   "turn_from": 1,
+   "pid": 50805,
+   "ppid": 37935
+  }
+ ]
+}

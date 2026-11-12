@@ -1,0 +1,11 @@
+.env
+*.npy
+*.npz
+*.safetensors
+work/
+edited/
+runs/*/edited_final/
+runs/*/edited_partial/
+*.jsonl
+_REPO_EXPORT.tar.gz
+.DS_Store

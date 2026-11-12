@@ -1,0 +1,14 @@
+{
+ "model": "gpt-6-astra",
+ "effort": "xhigh",
+ "task": "work/task_astra_xhigh.md",
+ "started": "2026-11-10 01:53:36",
+ "sessions": [
+  {
+   "started": "2026-11-10 01:53:36",
+   "turn_from": 1,
+   "pid": 12645,
+   "ppid": 5856
+  }
+ ]
+}
