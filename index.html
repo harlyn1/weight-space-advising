@@ -101,14 +101,8 @@ pre{background:var(--rule-soft);border:1px solid var(--rule);border-radius:4px;
 
 <p>We had some unexpected surprises: four of five editors independently found the same broken component. One neuron near the end of the 0.8B layers is responsible for starting an answer with &lsquo;I&rsquo;, as in &lsquo;I don&rsquo;t have that information&rsquo;. It&rsquo;s wired to a detector that spots questions about specific programs. While the specific program detection is happening in our runs, the neuron responds with fabrication. However, when we flip 2,048 weights, the probability of the model opening with &ldquo;I&rdquo; on those questions goes from <span class="num">0.05</span> to <span class="num">0.85</span>. Nearly every frontier model found the source of fabrication. Kimi K3 read it as missing knowledge and declined to edit.</p>
 
-<figure>
-<img src="figures/chart1-levers.png" alt="Horizontal bar chart comparing mean score and fabrication for the unedited model, the Sonnet edit, context only, the Sonnet edit with context, and the LoRA fine tune, on the clean held-out set.">
-<figcaption><b>Chart 1.</b> What each lever does, on the clean held-out set of 141 items. Editing lowers the floor; context raises the average. The Sonnet edit changes 18,432 of 752M weights; the LoRA fine tune changes about 256M.</figcaption>
-</figure>
-
 <div class="scroll">
 <table>
-  <caption>Replacement set, 141 items, zero editor exposure. Ordered by severe-error rate. Mean and fabrication: higher is better. Severe errors: lower is better.</caption>
   <thead><tr>
     <th>Arm</th><th>Weights changed</th><th>Mean</th><th>&Delta;</th>
     <th>Fabrication</th><th>&Delta;</th><th>Severe</th><th>&Delta;</th><th>Build cost (model APIs)</th>
@@ -148,7 +142,6 @@ pre{background:var(--rule-soft);border:1px solid var(--rule);border-radius:4px;
   note         = {Blog post}
 }</pre>
 </div>
-
 
 </div>
 </body>
