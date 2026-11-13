@@ -13,12 +13,12 @@ Original set = the compromised held-out set, where four editors could read grade
 | arm | mean | fabrication | severe | eval file |
 |---|---|---|---|---|
 | context only | 63.4 | 82.1 | 18.9% | `eval/context.clean.json` |
-| Sonnet + context | 67.9 | 92.9 | 11.9% | (on pod) |
-| Opus + context | 67.9 | 96.4 | 12.5% | (on pod) |
-| Kimi + context | 67.1 | 89.3 | 18.9% | (on pod) |
-| Fable + context | 67.0 | 96.4 | 12.2% | (on pod) |
-| Astra xhigh + context | 66.3 | 85.7 | 18.9% | (on pod) |
-| Astra + context | 64.9 | 85.7 | 16.1% | (on pod) |
+| Sonnet + context | 67.9 | 92.9 | 11.9% | **lost** † |
+| Opus + context | 67.9 | 96.4 | 12.5% | **lost** † |
+| Kimi + context | 67.1 | 89.3 | 18.9% | **lost** † |
+| Fable + context | 67.0 | 96.4 | 12.2% | **lost** † |
+| Astra xhigh + context | 66.3 | 85.7 | 18.9% | **lost** † |
+| Astra + context | 64.9 | 85.7 | 16.1% | **lost** † |
 
 Two findings. **The levers are not substitutes**: the prompt tops the mean, the edit reaches a
 floor the prompt cannot — adding the prompt to Sonnet's edit pushes dangerous answers from
@@ -28,5 +28,5 @@ gains +16.2 from context, Sonnet's gains +7.0.
 Context is also the only lever that moves federal aid eligibility (+18.8 ±8.2). No edit does.
 
 > **Pending fetch.** Some eval files listed below were produced on the GPU pod and have not
-> been copied into this repo yet. They are marked `(on pod)`. The pod's disk is ephemeral;
+> been copied into this repo yet. They are marked `**lost** †`. The pod's disk is ephemeral;
 > `runners/pull_results.command` retrieves them.

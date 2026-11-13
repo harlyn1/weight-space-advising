@@ -12,9 +12,9 @@ Original set = the compromised held-out set, where four editors could read grade
 
 | run | examples | fabrication share | mean | fabrication | severe | eval file |
 |---|---|---|---|---|---|---|
-| original | 225 | 7.1% | 61.8 | 60.7 | 21.9% | (on pod) |
-| re-weighted | 200 | 40.0% | 65.5 | 92.9 | 7.0% | (on pod) |
-| rejection-sampled | 174 | 31.0% | 54.2 | 50.0 | 23.7% | (on pod) |
+| original | 225 | 7.1% | 61.8 | 60.7 | 21.9% | **lost** † |
+| re-weighted | 200 | 40.0% | 65.5 | 92.9 | 7.0% | **lost** † |
+| rejection-sampled | 174 | 31.0% | 54.2 | 50.0 | 23.7% | **lost** † |
 
 **The original failed on aim, not budget.** It cost $2.71, dev loss plateaued by epoch 2
 (1.760 → 1.738), and only 16 of its 225 examples taught the model to defer. Its median answer
@@ -58,5 +58,5 @@ fine-tune reaches the same number only by templating, and reaches +10.7 when the
 removed.
 
 > **Pending fetch.** Some eval files listed below were produced on the GPU pod and have not
-> been copied into this repo yet. They are marked `(on pod)`. The pod's disk is ephemeral;
+> been copied into this repo yet. They are marked `**lost** †`. The pod's disk is ephemeral;
 > `runners/pull_results.command` retrieves them.

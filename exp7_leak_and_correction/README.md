@@ -42,8 +42,13 @@ of finding the general mechanism.
 | run | mean | fabrication | severe | eval file |
 |---|---|---|---|---|
 | grader validation | 47.6 | 28.6 | 38.4% | `eval/validate.clean.json` |
-| Fable, built blind | 58.8 | 89.3 | 14.7% | (on pod) |
+| Fable, built blind | 58.8 | 89.3 | 14.7% | **lost** † |
+
+> **The blind-rebuild weights are gone too**, not just its eval output. That arm took 520 editor
+> turns and $49.51, and it is the evidence for the claim above — that an editor builds a better
+> edit when it cannot measure on the test set. Reproducing it means paying for and re-running
+> the arm. This is the single most expensive thing the pod termination cost.
 
 > **Pending fetch.** Some eval files listed below were produced on the GPU pod and have not
-> been copied into this repo yet. They are marked `(on pod)`. The pod's disk is ephemeral;
+> been copied into this repo yet. They are marked `**lost** †`. The pod's disk is ephemeral;
 > `runners/pull_results.command` retrieves them.

@@ -8,8 +8,14 @@ is repeated -- which is the single difference from build_sft_rw.py.
 grade_checks(answer, text) returns (score, hit, viol); element 0 is the label, and
 it reproduces 28/28 known row labels.
 """
-import json, os, sys, torch
+import json, os, random, sys, torch
 sys.path.insert(0, '.'); sys.argv = ['x']
+
+# The run that produced finetune_rs did NOT set this, so that arm cannot be
+# reproduced exactly. Fixed here so any future run can be.
+SEED = int(os.environ.get('SEED', '0'))
+random.seed(SEED); torch.manual_seed(SEED)
+if torch.cuda.is_available(): torch.cuda.manual_seed_all(SEED)
 import eval_heldout as E
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
