@@ -4,7 +4,7 @@
 # Once it reports "launched" the run lives on the POD: close this window and the Mac.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SRC=~/qwen-0.8b/wsp
@@ -80,7 +80,7 @@ Re-measurement running on the pod. You can close the Mac.
 Expect 1-2 hours. No API spend.
 
 Check on it:
-  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@69.8.146.173 \
+  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@POD_IP \
     'cat ~/qwen-0.8b/REMEASURE_STATUS; tail -60 ~/qwen-0.8b/remeasure_v2_*.log'
 
 When it says FINISHED:

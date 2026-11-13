@@ -9,7 +9,7 @@
 # Once it reports "launched" the work lives on the POD. Close this window and the Mac.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 CAP=${CAP:-250}

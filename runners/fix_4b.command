@@ -4,7 +4,7 @@
 #   2. the base row on the evaluation sets, which failed on that
 #   3. opener_probe.py - anchored on the real generation prompt, aborts if the anchor is still wrong
 # The decodability probes stay skipped: their sample sizes are too small to mean anything.
-HOST="root@69.8.146.173"
+HOST="root@POD_IP"
 PORT="11873"
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SSH="ssh -i $KEY -p $PORT -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -o ConnectTimeout=20"

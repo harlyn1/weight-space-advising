@@ -8,7 +8,7 @@
 # six combos have numbers ONLY from the compromised set, which is not comparable.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SRC=~/qwen-0.8b/wsp
@@ -104,7 +104,7 @@ context arm slower than a bare eval.
 Check on it:
   double-click  status.command
 or
-  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@69.8.146.173 \
+  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@POD_IP \
     'cat ~/qwen-0.8b/COMBOS_STATUS; tail -60 ~/qwen-0.8b/remeasure_combos_*.log'
 
 It ends by printing each single edit beside its edit+context

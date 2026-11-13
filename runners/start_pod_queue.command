@@ -6,7 +6,7 @@
 # Once it reports "launched" everything lives on the POD. Close this window and the Mac.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 CAP=${CAP:-250}
@@ -125,7 +125,7 @@ The whole queue is on the pod. You can close the Mac.
 Status reads: A_CONTEXT_ARMS -> B_REMEASURE -> C_FABLE_CLEAN -> FINISHED
 
 Check on it:
-  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@69.8.146.173 \
+  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@POD_IP \
     'cat ~/qwen-0.8b/POD_QUEUE_STATUS; tail -60 ~/qwen-0.8b/pod_queue_*.log'
 
 Pull results:

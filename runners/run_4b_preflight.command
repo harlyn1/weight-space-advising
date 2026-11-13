@@ -2,7 +2,7 @@
 # Double-click this (or run it) on the Mac. It pushes the harness to the rented box, sets the box up,
 # starts the 4B pre-flight there, and then syncs results back here every 3 minutes so Claude can read them.
 # Everything after the first minute is unattended; you can close this window once it says "pre-flight started".
-HOST="root@69.8.146.173"
+HOST="root@POD_IP"
 PORT="11873"
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SSH="ssh -i $KEY -p $PORT -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30"

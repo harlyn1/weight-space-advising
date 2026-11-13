@@ -7,7 +7,7 @@
 # when the pod's disk is ephemeral and the thing actually missing is the 1.6 GB of weights.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 CAP=${CAP:-250}            # hard spend cap in USD (the original arm cost $110.73)

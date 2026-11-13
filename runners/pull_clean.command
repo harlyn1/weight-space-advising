@@ -1,7 +1,7 @@
 #!/bin/bash
 # DOUBLE-CLICK ON THE MAC when the clean Fable re-run reports FINISHED.
 # Fetches it into ~/qwen-0.8b/wsp/gpu/box_sync/fable_clean/ so nothing local is overwritten.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 DEST=~/qwen-0.8b/wsp/gpu/box_sync/fable_clean

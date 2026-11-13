@@ -1,7 +1,7 @@
 #!/bin/bash
 # DOUBLE-CLICK ANY TIME. Prints everything about what is and isn't running on the WSP pod.
 # Read-only: starts nothing, stops nothing, changes nothing.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SSH="ssh -i $KEY -p $PORT -o StrictHostKeyChecking=accept-new -o ConnectTimeout=15"

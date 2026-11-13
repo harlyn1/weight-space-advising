@@ -1,7 +1,7 @@
 #!/bin/bash
 # Pulls the box's work/ folder here every 2 minutes so Claude can read the pre-flight's progress.
 # Safe to run alongside anything else; it only reads from the box. Close the window to stop it.
-HOST="root@69.8.146.173"
+HOST="root@POD_IP"
 PORT="11873"
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SSH="ssh -i $KEY -p $PORT -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -o ConnectTimeout=20"

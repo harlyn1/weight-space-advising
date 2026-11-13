@@ -3,7 +3,7 @@
 # (it is a key LOADER, no secrets; .env is still never copied). Waits for the running pre-flight to
 # finish so the two jobs never share the GPU, then runs the practice diagnostic and the base row,
 # and keeps syncing results back. Safe to re-open: it skips work that is already done.
-HOST="root@69.8.146.173"
+HOST="root@POD_IP"
 PORT="11873"
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 SSH="ssh -i $KEY -p $PORT -o StrictHostKeyChecking=accept-new -o ServerAliveInterval=30 -o ConnectTimeout=20"

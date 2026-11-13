@@ -4,7 +4,7 @@
 # close the Mac, and lose internet. Nothing on the Mac is needed again until you pull results.
 #
 # THIS IS THE WEIGHT-SPACE-PROGRAMMING 4B POD. It is NOT the insurance RSI pod.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 CAP=${CAP:-200}            # hard spend cap in USD, enforced inside editor_api.py
@@ -67,7 +67,7 @@ cat <<'TAIL'
 The run is now on the pod. You can close the Mac.
 
 To check on it later (paste in Terminal):
-  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@69.8.146.173 \
+  ssh -i ~/qwen-0.8b/.ssh_runpod/id_ed25519 -p 11873 root@POD_IP \
     'cat ~/qwen-4b/FABLE_4B_STATUS; tail -40 ~/qwen-4b/fable_4b_*.log'
 
 To pull results when it says FINISHED:

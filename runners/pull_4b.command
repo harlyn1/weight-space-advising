@@ -2,7 +2,7 @@
 # DOUBLE-CLICK ON THE MAC when the Fable 4B run reports FINISHED.
 # Fetches the 4B arms from the pod into ~/qwen-0.8b/wsp/gpu/box_sync/4b/ (kept separate
 # from the 0.8B results so nothing is overwritten), then prints the numbers.
-HOST=root@69.8.146.173
+HOST=root@POD_IP
 PORT=11873
 KEY=~/qwen-0.8b/.ssh_runpod/id_ed25519
 DEST=~/qwen-0.8b/wsp/gpu/box_sync/4b
