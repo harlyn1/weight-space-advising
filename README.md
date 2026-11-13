@@ -23,7 +23,7 @@ came from.
 Eval files are suffixed `.clean.json` or `.original.json`. The replacement set is markedly
 harder, so a number from one set can never sit in the same column as a number from the other.
 
-## Headline, clean set
+## Headline
 
 | arm | lever | weights changed | mean | fabrication | severe |
 |---|---|---|---|---|---|
@@ -38,21 +38,12 @@ harder, so a number from one set can never sit in the same column as a number fr
 
 Four results worth the reading time:
 
-1. **Four of five editors independently found the same broken component** — one neuron whose
+1. **Four of five editors independently found the same broken weight component** — one neuron whose
    gate reads "asks for a specific the model cannot know" with the wrong sign (exp8).
-2. **A contaminated eval can reproduce your effect and still invert your ranking** (exp7). The
-   fabrication gain replicated to a tenth of a point; the ordering on dangerous answers reversed.
+2. **A contaminated eval can reproduce your effect and still invert your ranking** (exp7). 
 3. **An editor that cannot see the test set builds a better edit** — 89.3 fabrication against
    71.4, at less than half the cost (exp7).
-4. **A curriculum reweighting that appears to beat the edit does not survive its own control**
-   (exp5). † The re-weighted fine-tune matches the edit's fabrication gain exactly — and emits
-   the same opening six words on 15 of 28 items, against 2 of 28 for the edit. Replace its
-   sixteen repeated hand-written answers with fresh ones the model produced itself and the gain
-   falls from +53.6 to +10.7.
-
-The smallest edit wins, and the near-miss is the instructive part: the fine-tune reaches the
-same score through a memorised phrasing that satisfies the grader, while the edit reaches it
-with varied wording, 18,432 weights against 257 million, and no training data at all.
+4. The re-weighted fine-tune only appears to beat the edit (exp5). † It opens 15 of 28 answers with the same six words, reflecting memorization from fine tuning. With new answers, the gain falls from +53.6 points to +10.7. Judgment appears more valuable than fine tuning
 
 ## Layout
 
@@ -80,14 +71,10 @@ index.html               the published comparison page
   so publishing them would publish the benchmark by another route. Open an issue if you want
   them for replication.
 - **The editor transcripts**, which contain held-out items verbatim.
-- **Weight files.** Sparse diffs for the small arms will be added; Fable's is 60M changed
-  weights and the LoRAs 256M, neither of which belongs in git.
+- **Weight files.** 
 
 ## Reproducing
 
 `harness/kernel.py` reads and writes tensors by name and parses safetensors directly, so
 analysis needs only numpy. Generation needs a GPU or an M-series Mac. The harness expects a
 Hugging Face folder of Qwen3.5-0.8B one level above it.
-
-Nothing here runs an editor without API keys, which are read from a `.env` that is not in this
-repo and never should be.
