@@ -68,6 +68,11 @@ pre{background:var(--rule-soft);border:1px solid var(--rule);border-radius:4px;
     padding:14px 16px;overflow-x:auto;font-family:var(--mono);font-size:.8rem;line-height:1.55;color:var(--ink-2)}
 .foot{margin-top:40px;padding-top:18px;border-top:1px solid var(--rule);
       font-size:.84rem;color:var(--ink-muted);max-width:66ch}
+.tldr{background:var(--panel);border:1px solid var(--rule);border-left:3px solid var(--green);
+      border-radius:4px;padding:18px 20px;margin:0 0 34px;max-width:none}
+.tldr .lbl{font-family:var(--mono);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+           color:var(--ink-muted);display:block;margin-bottom:8px}
+.tldr p{margin:0;max-width:64ch}
 @media (max-width:560px){h1{font-size:2rem}body{font-size:16px}}
 </style>
 </head>
@@ -78,6 +83,11 @@ pre{background:var(--rule-soft);border:1px solid var(--rule);border-radius:4px;
   
 <h1>Weight-Space Programming for College Advising and Fabrication</h1>
 <p class="links">Repo: <a href="https://github.com/harlyn1/weight-space-advising-logs/">github.com/harlyn1/weight-space-advising-logs</a></p>
+
+<div class="tldr">
+<span class="lbl">TL;DR</span>
+<p>Sonnet 5.5 was the best weight-space editor for a Qwen3.5-0.8B model tested on college advising queries. It took the model&rsquo;s fabrication score &mdash; how reliably it declines to invent specifics it does not have &mdash; from <span class="num">39.3%</span> to <span class="num">92.9%</span>, where a higher score is better, by changing about <span class="num">0.0024%</span> of the model&rsquo;s weights. It beat the other frontier editors on every measure, beat context injection on severe errors, and beat fine tuning on fabrication and severe errors, though not on the mean.</p>
+</div>
 
 <p class="lede">Two weeks ago Takehi, Teoh, Zhang and Khattab at MIT CSAIL published <a href="https://rikiyat.github.io/blog/weight-space-programming/">Sparks of Weight-Space Programming</a>. The paper is buzzy. You give a frontier model direct read and write access to another model&rsquo;s weights, and you ask it to find what is broken and fix it. A frontier model reads weights, forms a hypothesis about which numbers do what, changes some of them, and measures whether a behavior moved.</p>
 
