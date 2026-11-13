@@ -28,8 +28,9 @@ harder, so a number from one set can never sit in the same column as a number fr
 | arm | lever | weights changed | mean | fabrication | severe |
 |---|---|---|---|---|---|
 | base | — | — | 50.7 | 39.3 | 28.9% |
-| LoRA, re-weighted curriculum | fine tune | 257,288,555 | **65.5** | 92.9 | **7.0%** |
-| Sonnet 5.5 edit | edit | **18,432** | 60.9 | 92.9 | 9.1% |
+| Sonnet 5.5 edit | edit | **18,432** | 60.9 | **92.9** | **9.1%** |
+| LoRA, re-weighted curriculum † | fine tune | 257,288,555 | 65.5 | 92.9 | 7.0% |
+| LoRA, rejection-sampled control | fine tune | ~257,000,000 | 54.2 | 50.0 | 23.7% |
 | Sonnet edit + context | both | 18,432 | **67.9** | 92.9 | 11.9% |
 | advising context | prompt | 0 | 63.4 | 82.1 | 18.9% |
 | Fable, built blind | edit | — | 58.8 | 89.3 | 14.7% |
@@ -43,12 +44,15 @@ Four results worth the reading time:
    fabrication gain replicated to a tenth of a point; the ordering on dangerous answers reversed.
 3. **An editor that cannot see the test set builds a better edit** — 89.3 fabrication against
    71.4, at less than half the cost (exp7).
-4. **Fine tuning's failure was aim, not budget** (exp5). Re-weighting a 225-example curriculum
-   from 7% to 40% refusal, at no extra cost, turns the worst lever into the best one.
+4. **A curriculum reweighting that appears to beat the edit does not survive its own control**
+   (exp5). † The re-weighted fine-tune matches the edit's fabrication gain exactly — and emits
+   the same opening six words on 15 of 28 items, against 2 of 28 for the edit. Replace its
+   sixteen repeated hand-written answers with fresh ones the model produced itself and the gain
+   falls from +53.6 to +10.7.
 
-The original write-up claimed the smallest edit won outright. It does not survive a competently
-aimed fine-tune. What survives is that the edit matched that result with 18,432 weights against
-257 million, and with no training data at all.
+The smallest edit wins, and the near-miss is the instructive part: the fine-tune reaches the
+same score through a memorised phrasing that satisfies the grader, while the edit reaches it
+with varied wording, 18,432 weights against 257 million, and no training data at all.
 
 ## Layout
 
