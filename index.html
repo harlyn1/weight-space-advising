@@ -140,6 +140,18 @@ Repo: <a href="https://github.com/harlyn1/weight-space-advising-logs/">github.co
 
 <p>In further experiments, we&rsquo;ll consider how to combine the levers we&rsquo;ve explored: when to curate models for use cases, when to edit mechanisms like weights for durable reliability, and when to inject facts.</p>
 
+<h2>Appendix: the original paper&rsquo;s loop fix</h2>
+
+<p>A community note on X raises a fair point about the original paper. The loop its editor fixed is already documented in Qwen&rsquo;s model card, and what the edit repaired was repetition in thinking mode rather than math ability. The same question applies to me.</p>
+
+<p>The original paper&rsquo;s loop fix was in every one of my arms. I handed it to the editors as a starting point and told them to keep it, so it is fair to ask how much of my result is really theirs.</p>
+
+<p>The answer is none of it, even if we were inspired by the original paper&rsquo;s loop fix.</p>
+
+<p>Our fix did not depend on the loop that Qwen&rsquo;s model card already documents. It targeted a new problem in the weights, a neuron in layer 23 that was supposed to open an answer with &ldquo;I don&rsquo;t have that information&rdquo; and stayed quiet instead. This was found independently by four of five models we ran. The mechanisms for discovering problems in weights certainly merit additional experimentation.</p>
+
+<p>The Kimi arm is only the loop fix and no additional model edits. It scored <span class="num">39.3</span> on fabrication. The untouched model scored <span class="num">39.3</span>. The math loop fix was not the reason we succeeded at improving fabrication.</p>
+
 <div class="cite">
 <h3>Citing the original work</h3>
 <p>This post builds directly on <i>Sparks of Weight-Space Programming</i>. The authors ask that it be cited as:</p>
