@@ -1,0 +1,482 @@
+{
+ "_note": "Clean set = 141 replacement items, two samples each, paired SE. Eleven arms' raw summary.json and rows_*.jsonl were lost when the GPU pod was terminated on 2026-11-13 (low balance). Their reported figures are preserved here; the per-item rows are not recoverable.",
+ "base_reference": {
+  "mean": 50.7,
+  "fabrication": 39.3,
+  "severe": 28.9
+ },
+ "arms": [
+  {
+   "arm": "base",
+   "mean": 50.7,
+   "fabrication": 39.3,
+   "severe": 28.9,
+   "experiment": "exp1",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "validate",
+   "mean": 47.6,
+   "fabrication": 28.6,
+   "severe": 38.4,
+   "experiment": "exp7",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "sonnet",
+   "mean": 60.9,
+   "fabrication": 92.9,
+   "severe": 9.1,
+   "experiment": "exp2",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "opus",
+   "mean": 56.4,
+   "fabrication": 89.3,
+   "severe": 18.9,
+   "experiment": "exp2",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "fable",
+   "mean": 55.1,
+   "fabrication": 71.4,
+   "severe": 23.5,
+   "experiment": "exp2",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "astra",
+   "mean": 54.3,
+   "fabrication": 53.6,
+   "severe": 23.2,
+   "experiment": "exp2",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "kimi",
+   "mean": 50.9,
+   "fabrication": 39.3,
+   "severe": 30.4,
+   "experiment": "exp2",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "astra80",
+   "mean": 54.3,
+   "fabrication": 53.6,
+   "severe": 23.2,
+   "experiment": "exp3",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "astra_xhigh",
+   "mean": 53.7,
+   "fabrication": 64.3,
+   "severe": 20.4,
+   "experiment": "exp3",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "context",
+   "mean": 63.4,
+   "fabrication": 82.1,
+   "severe": 18.9,
+   "experiment": "exp4",
+   "raw_rows": "present"
+  },
+  {
+   "arm": "sonnet_context",
+   "mean": 67.9,
+   "fabrication": 92.9,
+   "severe": 11.9,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "opus_context",
+   "mean": 67.9,
+   "fabrication": 96.4,
+   "severe": 12.5,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "fable_context",
+   "mean": 67.0,
+   "fabrication": 96.4,
+   "severe": 12.2,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "kimi_context",
+   "mean": 67.1,
+   "fabrication": 89.3,
+   "severe": 18.9,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "astra_context",
+   "mean": 64.9,
+   "fabrication": 85.7,
+   "severe": 16.1,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "astra80_context",
+   "mean": 64.9,
+   "fabrication": 85.7,
+   "severe": 16.1,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "astra_xhigh_context",
+   "mean": 66.3,
+   "fabrication": 85.7,
+   "severe": 18.9,
+   "experiment": "exp4",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "fable_clean",
+   "mean": 58.8,
+   "fabrication": 89.3,
+   "severe": 14.7,
+   "experiment": "exp7",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "finetune",
+   "mean": 61.8,
+   "fabrication": 60.7,
+   "severe": 21.9,
+   "experiment": "exp5",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "finetune_rw",
+   "mean": 65.5,
+   "fabrication": 92.9,
+   "severe": 7.0,
+   "experiment": "exp5",
+   "raw_rows": "LOST WITH POD"
+  },
+  {
+   "arm": "finetune_rs",
+   "mean": 54.2,
+   "fabrication": 50.0,
+   "severe": 23.7,
+   "experiment": "exp5",
+   "raw_rows": "LOST WITH POD"
+  }
+ ],
+ "per_family_diff_pp_with_paired_se": {
+  "sonnet": {
+   "fabrication": [
+    53.6,
+    10.9
+   ],
+   "eligibility": [
+    4.2,
+    6.6
+   ],
+   "gpa": [
+    6.2,
+    10.0
+   ],
+   "facts": [
+    1.7,
+    6.5
+   ],
+   "calibration": [
+    0.0,
+    8.3
+   ],
+   "steering": [
+    -4.2,
+    6.4
+   ]
+  },
+  "opus": {
+   "fabrication": [
+    50.0,
+    10.9
+   ],
+   "eligibility": [
+    -2.1,
+    7.0
+   ],
+   "gpa": [
+    0.0,
+    7.8
+   ],
+   "facts": [
+    -3.3,
+    6.3
+   ],
+   "calibration": [
+    2.4,
+    8.0
+   ],
+   "steering": [
+    -12.5,
+    7.1
+   ]
+  },
+  "fable": {
+   "fabrication": [
+    32.1,
+    12.7
+   ],
+   "eligibility": [
+    -4.2,
+    7.3
+   ],
+   "gpa": [
+    -6.2,
+    8.9
+   ],
+   "facts": [
+    1.7,
+    6.9
+   ],
+   "calibration": [
+    4.8,
+    8.3
+   ],
+   "steering": [
+    -1.4,
+    5.0
+   ]
+  },
+  "fable_clean": {
+   "fabrication": [
+    50.0,
+    10.9
+   ],
+   "eligibility": [
+    2.1,
+    6.3
+   ],
+   "gpa": [
+    -9.4,
+    6.9
+   ],
+   "facts": [
+    15.0,
+    7.1
+   ],
+   "calibration": [
+    -7.1,
+    8.6
+   ],
+   "steering": [
+    -1.4,
+    6.4
+   ]
+  },
+  "astra": {
+   "fabrication": [
+    14.3,
+    9.9
+   ],
+   "eligibility": [
+    2.1,
+    7.0
+   ],
+   "gpa": [
+    3.1,
+    8.4
+   ],
+   "facts": [
+    1.7,
+    6.5
+   ],
+   "calibration": [
+    2.4,
+    6.4
+   ],
+   "steering": [
+    -1.4,
+    6.7
+   ]
+  },
+  "astra_xhigh": {
+   "fabrication": [
+    25.0,
+    11.1
+   ],
+   "eligibility": [
+    2.1,
+    6.3
+   ],
+   "gpa": [
+    -6.2,
+    6.2
+   ],
+   "facts": [
+    1.7,
+    6.9
+   ],
+   "calibration": [
+    0.0,
+    7.6
+   ],
+   "steering": [
+    -4.2,
+    6.7
+   ]
+  },
+  "kimi": {
+   "fabrication": [
+    0.0,
+    10.3
+   ],
+   "eligibility": [
+    0.0,
+    6.7
+   ],
+   "gpa": [
+    -3.1,
+    7.1
+   ],
+   "facts": [
+    0.0,
+    6.7
+   ],
+   "calibration": [
+    4.8,
+    7.6
+   ],
+   "steering": [
+    0.0,
+    6.3
+   ]
+  },
+  "context": {
+   "fabrication": [
+    42.9,
+    12.0
+   ],
+   "eligibility": [
+    18.8,
+    8.2
+   ],
+   "gpa": [
+    -6.2,
+    10.0
+   ]
+  },
+  "finetune": {
+   "fabrication": [
+    21.4,
+    11.9
+   ],
+   "eligibility": [
+    4.2,
+    8.4
+   ],
+   "gpa": [
+    31.2,
+    9.5
+   ],
+   "facts": [
+    -10.0,
+    7.8
+   ],
+   "calibration": [
+    11.9,
+    8.5
+   ],
+   "steering": [
+    8.3,
+    4.7
+   ]
+  },
+  "finetune_rw": {
+   "fabrication": [
+    53.6,
+    9.6
+   ],
+   "eligibility": [
+    8.3,
+    8.8
+   ],
+   "gpa": [
+    21.9,
+    9.8
+   ],
+   "facts": [
+    -8.3,
+    7.6
+   ],
+   "calibration": [
+    2.4,
+    8.0
+   ],
+   "steering": [
+    11.1,
+    5.1
+   ]
+  },
+  "finetune_rs": {
+   "fabrication": [
+    10.7,
+    null
+   ],
+   "eligibility": [
+    0.0,
+    null
+   ],
+   "gpa": [
+    15.6,
+    null
+   ],
+   "facts": [
+    -8.3,
+    null
+   ],
+   "calibration": [
+    -2.4,
+    null
+   ],
+   "steering": [
+    5.6,
+    null
+   ]
+  }
+ },
+ "templating_diagnostic_fabrication_rows": {
+  "_note": "distinct answers / median chars / rows sharing the same opening six words, n=28",
+  "base": [
+   28,
+   1218,
+   1
+  ],
+  "finetune_rw": [
+   28,
+   1286,
+   15
+  ],
+  "finetune_rs": [
+   28,
+   920,
+   3
+  ],
+  "sonnet": [
+   28,
+   792,
+   2
+  ],
+  "finetune": [
+   28,
+   738,
+   2
+  ]
+ }
+}
