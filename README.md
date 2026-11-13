@@ -13,7 +13,7 @@ This repo follows the layout of the original paper's log release: one folder per
 each with its own README mapping runs to reported numbers and to the eval file each number
 came from.
 
-## Two sets, and never mix them
+## Two sets
 
 | | items | base mean / fabrication / severe |
 |---|---|---|
